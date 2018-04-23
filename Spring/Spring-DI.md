@@ -77,7 +77,7 @@ Class A, Class B
 ##### [A라는 클래스가 B라는 클래스를 사용하는 방법]
 1. 상속 (is ~a) > Spring Framework에 관심이 없어요
 2. 포함 (has ~a)
-    - [생성자]를 통해서 (constructor injection)
+- [생성자]를 통해서 (constructor injection)
 ```java
 A a = new A();
 Class A {
@@ -88,8 +88,7 @@ Class A {
 }
 ```
 A라는 클래스의 [생성자]에서 B라는 객체 생성 사용 (복합 연관)
-
-    - [setter함수]를 통해서 (setter injection)
+- [setter함수]를 통해서 (setter injection)
 ```java
 A a = new A();
 B b = new B();
@@ -101,10 +100,11 @@ Class A {
     }
 }
 ```
+
 결론: SpringFrameWork는 다른 객체 참조(의존)하기 위해서 아래 두 방법 사용
-    * constructor injection
-    * setter injection
-    ##### -> DI(Dependecny Injection)
+* constructor injection
+* setter injection
+#### -> DI(Dependecny Injection)
 
 ## 예제 1
 ### MessageBean.java
