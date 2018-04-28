@@ -1,6 +1,7 @@
 # Spring MVC Annotation
 
-## web.xml
+## 공통 코드
+### web.xml
 ```xml
 <!-- /WEB-INF/web.xml -->
 <web-app ...>
@@ -16,7 +17,7 @@
 </web-app>
 ```
 
-## dispatcher-servlet.xml
+### dispatcher-servlet.xml
 ```xml
 <!-- /WEB-INF/dispatcher-servlet.xml -->
 <beans ...>
