@@ -70,7 +70,7 @@ public class SearchController {
 	// (/search/internal.do?query=hong&p=100)
 	@RequestMapping("search/internal.do")
 	public ModelAndView searchInternal(@RequestParam("query") String query,
-									   @RequestParam("p") int p) {
+					   @RequestParam("p") int p) {
 		System.out.println("param query: " + query);
 		System.out.println("param p: " + p);
 		return new ModelAndView("search/internal");
@@ -84,7 +84,7 @@ public class SearchController {
 	*/
 	@RequestMapping("search/external.do")
 	public ModelAndView searchExternal(@RequestParam(value="query", required=false, defaultValue="default") String query,
-									   @RequestParam(value="p", defaultValue="111") int p) {
+					   @RequestParam(value="p", defaultValue="111") int p) {
 		System.out.println("param query: " + query);
 		System.out.println("param p: " + p);
 		return new ModelAndView("search/internal");
