@@ -14,6 +14,7 @@
   <servlet>
   	<servlet-name>spring</servlet-name>
     <!-- DispatcherServlet 클래스 (Spring 제공하는 FrontController, 요청 판단(url-pattern 설정)) -->
+    <!-- web MVC framework 에서는 각 DispatcherServlet은 각자 자신의 WebApplicationContext [IOC  컨테이너]를 가지고 있다 -->
   	<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
   </servlet>
   <servlet-mapping>
