@@ -1,4 +1,4 @@
-# 선택정렬(Selection Sort)
+# 선택정렬(Selection Sort) - O(n<sup>2</sup>)
 
 > 출처: [엔지니어대한민국 YouTube](https://www.youtube.com/channel/UCWMAh9cSkEn8v42YRO90BHA)
 
