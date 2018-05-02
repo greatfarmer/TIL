@@ -172,3 +172,14 @@ public class PageController {
 
 ### 디렉토리 구조
 ![Tiles Directories](images/tiles.png)
+
+### 결과
+```
+http://localhost:8090/Test_Tiles/index.do
+```
+![index.do](images/tiles-index.png)
+
+```
+http://localhost:8090/Test_Tiles/spring.do
+```
+![index.do](images/tiles-spring.png)
