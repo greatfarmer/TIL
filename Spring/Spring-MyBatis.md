@@ -106,7 +106,16 @@ public class SqlExecution {
 </sqlMap>
 ```
 
-## 프로젝트에 적용 시
+## 작성 순서
+```
+1. Mybatis 설정 (LIB) >> POM.xml
+2. Oracle 원격 저장소 Maven설정 >> dependency
+3. Mybatis > Config.xml (DB연결, Mapper 설정) > 별도의 객체를 설정...
+            Spring -> 설정(Bean 객체를 ...작업)
+4. mapper 파일 생성 (NoticeDao 인터페이스 연결)
+```
+
+## 주의사항
 ```
 전제조건: 특정한 이름(예: boardid)으로 UI, Java, DB단을 매핑시켜줘야 한다.
 ```
