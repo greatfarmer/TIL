@@ -1,7 +1,7 @@
 # 병합정렬(Merge Sort) - O(n log n)
-> 출처: [엔지니어대한민국 YouTube](https://www.youtube.com/channel/UCWMAh9cSkEn8v42YRO90BHA)
+> 출처: [엔지니어대한민국 YouTube - Merge Sort](https://www.youtube.com/watch?v=QAyl79dCO_k)
 
-[![Selection Sort](http://img.youtube.com/vi/QAyl79dCO_k/0.jpg)](https://www.youtube.com/watch?v=QAyl79dCO_k)
+![mergeSort](images/mergeSort.png)
 
 ## Java
 ```java
