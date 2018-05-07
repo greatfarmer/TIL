@@ -1,8 +1,8 @@
 # 선택정렬(Selection Sort) - O(n<sup>2</sup>)
 
-> 출처: [엔지니어대한민국 YouTube](https://www.youtube.com/channel/UCWMAh9cSkEn8v42YRO90BHA)
+> 출처: [엔지니어대한민국 YouTube - Selection Sort](https://www.youtube.com/watch?v=uCUu3fF5Dws)
 
-[![Selection Sort](http://img.youtube.com/vi/uCUu3fF5Dws/0.jpg)](https://www.youtube.com/watch?v=uCUu3fF5Dws)
+![Selection Sort](http://img.youtube.com/vi/uCUu3fF5Dws/0.jpg)
 
 ## Java
 ```java
