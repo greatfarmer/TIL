@@ -1,245 +1,60 @@
 # Spring Security
 > 출처: [pentode.tistory.com](pentode.tistory.com)
 
-## 디렉토리 구조
+## 정리
+|<center>표현식</center>|<center>설명</center>|
+|---|---|
+|hasRole([role])|현재 로그인된 사용자가 지정된  role을 가지고 있으면 true를 반환합니다. 제공된  role이 'ROLE_'로 시작하지 않으면 기본적으로  'ROLE_'를 추가합니다. 이것은  DefaultWebSecurityExpressionHandler에서  defaultRolePrefix를 수정하여 커스터마이즈할 수  있습니다.|
+|hasAnyRole([role1,role2])|현재 로그인된 사용자가  콤마(,)로 분리하여 주어진 role들 중 하나라도 가지고  있으면 true를 반환합니다. 제공된 role이 'ROLE_'로  시작하지 않으면 기본적으로 'ROLE_'를 추가합니다.  이것은 DefaultWebSecurityExpressionHandler에서  defaultRolePrefix를 수정하여 커스터마이즈할 수  있습니다.|
+|hasAuthority([authority])|현재 로그인된 사용자가  지정된 권한이 있으면 true를 반환합니다.|
+|hasAnyAuthority([authority1,authority2])|현재  로그인된 사용자가 콤마(,)로 분리하여 주어진 권한들중  하나라도 가지고 있으면 true를 반환합니다.|
+|principal|현재 사용자를 나타내는 principal 객체에  직접 접근할 수 있습니다.|
+|authentication|SecurityContext로 부터 얻은  Authentication 객체에 직접 접근할 수 있습니다.|
+|permitAll|항상 true로 평가 됩니다.|
+|denyAll|항상 false로 평가 됩니다.|
+|isAnonymous()|현재 사용자가 익명사용자(로그인  안됨) 사용자이면 true를 반환합니다.|
+|isRememberMe()|현재 로그인된 사용자가 remember-me  사용자이면 true를 반환합니다. <br> (로그인 정보 기억 기능에  의한 사용자)|
+|isAuthenticated()|현재 사용자가 로그인된  사용자라면 true를 반환합니다.|
+|isFullyAuthenticated()|로그인 정보  기억(remember-me)이 아니라 아이디/비밀번호를  입력하여 로그인 했다면 true를 반환합니다.|
+|hasPermission(Object target, Object permission)|사용자가 주어진 권한으로 제공된 대상에 액세스 할  수 있으면 true 를 반환합니다. 예,  hasPermission(domainObject, 'read')|
+|hasPermission(Object targetId, String  targetType, Object permission)|사용자가 주어진  권한으로 제공된 대상에 액세스 할 수 있으면 true 를  반환합니다. 예, hasPermission(1,  'com.example.domain.Message', 'read')|
+
+## 우선순위
+```
+<intercept-url pattern="/login/loginForm.do"  access="permitAll" />
+<intercept-url pattern="/**"  access="hasAnyRole('USER, ADMIN')" />
+```
+두 가지 경우에는 경로가 명시되어 있는 "/login/loginForm.do"가 우선된다.
+
+## 예제
+### 디렉토리 구조
 ![Tree](images/security-ex1-tree.png)
 
-## pom.xml
+### pom.xml
 ```xml
-<?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
-	<modelVersion>4.0.0</modelVersion>
-	<groupId>com.tistory</groupId>
-	<artifactId>pentode</artifactId>
-	<name>spring_security</name>
-	<packaging>war</packaging>
-	<version>1.0.0-BUILD-SNAPSHOT</version>
-	<properties>
-		<java-version>1.8</java-version>
-		<org.springframework-version>4.2.5.RELEASE</org.springframework-version>
-		<org.aspectj-version>1.6.10</org.aspectj-version>
-		<org.slf4j-version>1.6.6</org.slf4j-version>
-	</properties>
+...
+<!-- Spring Security -->
+<dependency>
+    <groupId>org.springframework.security</groupId>
+    <artifactId>spring-security-core</artifactId>
+    <version>4.2.1.RELEASE</version>
+</dependency>
 
-    <repositories>
-        <repository>
-            <id>oracle</id>
-            <url>http://maven.jahia.org/maven2</url>
-        </repository>
-    </repositories>
+<dependency>
+    <groupId>org.springframework.security</groupId>
+    <artifactId>spring-security-web</artifactId>
+    <version>4.2.1.RELEASE</version>
+</dependency>
 
-	<dependencies>
-		<!-- Spring -->
-		<dependency>
-			<groupId>org.springframework</groupId>
-			<artifactId>spring-context</artifactId>
-			<version>${org.springframework-version}</version>
-			<exclusions>
-				<!-- Exclude Commons Logging in favor of SLF4j -->
-				<exclusion>
-					<groupId>commons-logging</groupId>
-					<artifactId>commons-logging</artifactId>
-				 </exclusion>
-			</exclusions>
-		</dependency>
-		<dependency>
-			<groupId>org.springframework</groupId>
-			<artifactId>spring-webmvc</artifactId>
-			<version>${org.springframework-version}</version>
-		</dependency>
-
-        <dependency>
-            <groupId>org.springframework</groupId>
-            <artifactId>spring-jdbc</artifactId>
-            <version>${org.springframework-version}</version>
-        </dependency>
-
-        <dependency>
-            <groupId>org.springframework</groupId>
-            <artifactId>spring-test</artifactId>
-            <version>${org.springframework-version}</version>
-        </dependency>
-
-		<!-- AspectJ -->
-		<dependency>
-			<groupId>org.aspectj</groupId>
-			<artifactId>aspectjrt</artifactId>
-			<version>${org.aspectj-version}</version>
-		</dependency>
-		<dependency>
-           <groupId>org.aspectj</groupId>
-           <artifactId>aspectjweaver</artifactId>
-           <version>${org.aspectj-version}</version>
-         </dependency>
-
-
-		<!-- Logging -->
-		<dependency>
-			<groupId>org.slf4j</groupId>
-			<artifactId>slf4j-api</artifactId>
-			<version>${org.slf4j-version}</version>
-		</dependency>
-		<dependency>
-			<groupId>org.slf4j</groupId>
-			<artifactId>jcl-over-slf4j</artifactId>
-			<version>${org.slf4j-version}</version>
-			<scope>runtime</scope>
-		</dependency>
-		<dependency>
-			<groupId>org.slf4j</groupId>
-			<artifactId>slf4j-log4j12</artifactId>
-			<version>${org.slf4j-version}</version>
-			<scope>runtime</scope>
-		</dependency>
-		<dependency>
-			<groupId>log4j</groupId>
-			<artifactId>log4j</artifactId>
-			<version>1.2.15</version>
-			<exclusions>
-				<exclusion>
-					<groupId>javax.mail</groupId>
-					<artifactId>mail</artifactId>
-				</exclusion>
-				<exclusion>
-					<groupId>javax.jms</groupId>
-					<artifactId>jms</artifactId>
-				</exclusion>
-				<exclusion>
-					<groupId>com.sun.jdmk</groupId>
-					<artifactId>jmxtools</artifactId>
-				</exclusion>
-				<exclusion>
-					<groupId>com.sun.jmx</groupId>
-					<artifactId>jmxri</artifactId>
-				</exclusion>
-			</exclusions>
-			<scope>runtime</scope>
-		</dependency>
-
-		<!-- @Inject -->
-		<dependency>
-			<groupId>javax.inject</groupId>
-			<artifactId>javax.inject</artifactId>
-			<version>1</version>
-		</dependency>
-
-        <!-- 데이터베이스(DBCP, Oracle Driver, MyBatis) -->
-        <dependency>
-            <groupId>commons-dbcp</groupId>
-            <artifactId>commons-dbcp</artifactId>
-            <version>1.4</version>
-        </dependency>
-
-        <dependency>
-            <groupId>com.oracle</groupId>
-            <artifactId>ojdbc6</artifactId>
-            <version>12.1.0.2</version>
-        </dependency>
-
-        <dependency>
-            <groupId>org.mybatis</groupId>
-            <artifactId>mybatis</artifactId>
-            <version>3.4.1</version>
-        </dependency>
-
-        <dependency>
-            <groupId>org.mybatis</groupId>
-            <artifactId>mybatis-spring</artifactId>
-            <version>1.3.0</version>
-        </dependency>
-
-        <!-- Spring Security -->
-        <dependency>
-            <groupId>org.springframework.security</groupId>
-            <artifactId>spring-security-core</artifactId>
-            <version>4.2.1.RELEASE</version>
-        </dependency>
-
-		<dependency>
-		    <groupId>org.springframework.security</groupId>
-		    <artifactId>spring-security-web</artifactId>
-		    <version>4.2.1.RELEASE</version>
-		</dependency>
-
-        <dependency>
-            <groupId>org.springframework.security</groupId>
-            <artifactId>spring-security-config</artifactId>
-            <version>4.2.1.RELEASE</version>
-        </dependency>
-
-		<!-- Servlet -->
-		<dependency>
-			<groupId>javax.servlet</groupId>
-			<artifactId>javax.servlet-api</artifactId>
-			<version>3.0.1</version>
-			<scope>provided</scope>
-		</dependency>
-		<dependency>
-			<groupId>javax.servlet.jsp</groupId>
-			<artifactId>jsp-api</artifactId>
-			<version>2.2</version>
-			<scope>provided</scope>
-		</dependency>
-		<dependency>
-			<groupId>javax.servlet</groupId>
-			<artifactId>jstl</artifactId>
-			<version>1.2</version>
-		</dependency>
-
-		<!-- Test -->
-		<dependency>
-			<groupId>junit</groupId>
-			<artifactId>junit</artifactId>
-			<version>4.7</version>
-			<scope>test</scope>
-		</dependency>
-
-	</dependencies>
-
-    <build>
-        <plugins>
-            <plugin>
-                <artifactId>maven-eclipse-plugin</artifactId>
-                <version>2.9</version>
-                <configuration>
-                    <additionalProjectnatures>
-                        <projectnature>org.springframework.ide.eclipse.core.springnature</projectnature>
-                    </additionalProjectnatures>
-                    <additionalBuildcommands>
-                        <buildcommand>org.springframework.ide.eclipse.core.springbuilder</buildcommand>
-                    </additionalBuildcommands>
-                    <downloadSources>true</downloadSources>
-                    <downloadJavadocs>true</downloadJavadocs>
-                </configuration>
-            </plugin>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-compiler-plugin</artifactId>
-                <version>2.5.1</version>
-                <configuration>
-                    <source>1.7</source>
-                    <target>1.7</target>
-                    <compilerArgument>-Xlint:all</compilerArgument>
-                    <showWarnings>true</showWarnings>
-                    <showDeprecation>true</showDeprecation>
-                </configuration>
-            </plugin>
-            <plugin>
-                <groupId>org.codehaus.mojo</groupId>
-                <artifactId>exec-maven-plugin</artifactId>
-                <version>1.2.1</version>
-                <configuration>
-                    <mainClass>org.test.int1.Main</mainClass>
-                </configuration>
-            </plugin>
-        </plugins>
-    </build>
-
-</project>
+<dependency>
+    <groupId>org.springframework.security</groupId>
+    <artifactId>spring-security-config</artifactId>
+    <version>4.2.1.RELEASE</version>
+</dependency>
+...
 ```
 
-## Web.xml
+### Web.xml
 ```xml
 <?xml version="1.0" encoding="UTF-8"?>
 <web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://java.sun.com/xml/ns/javaee" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd" version="3.0">
@@ -284,7 +99,7 @@
 </web-app>
 ```
 
-## root-context.xml
+### root-context.xml
 ```xml
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
@@ -301,7 +116,7 @@
 </beans>
 ```
 
-## security-context.xml
+### security-context.xml
 ```xml
 <?xml version="1.0" encoding="UTF-8"?>
 <beans:beans xmlns="http://www.springframework.org/schema/security"
@@ -329,7 +144,7 @@
 </beans:beans>
 ```
 
-## servlet-context.xml
+### servlet-context.xml
 ```xml
 <?xml version="1.0" encoding="UTF-8"?>
 <beans:beans xmlns="http://www.springframework.org/schema/mvc"
@@ -370,7 +185,7 @@
 </beans:beans>
 ```
 
-## HomeController.java
+### HomeController.java
 ```java
 package com.tistory.pentode;
 
@@ -402,7 +217,7 @@ public class HomeController {
 }
 ```
 
-## home.jsp
+### home.jsp
 ```html
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
@@ -425,3 +240,8 @@ public class HomeController {
 </body>
 </html>
 ```
+
+## 결과
+|메인화면|로그인|로그아웃|에러|
+|---|---|---|---|
+|![index](images/security-ex1-index.png)|![login](images/security-ex1-login.png)|![login](images/security-ex1-logout.png)|![login](images/security-ex1-error.png)|
