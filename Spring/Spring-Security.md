@@ -1,5 +1,4 @@
 # Spring Security
-> 출처: [pentode.tistory.com](pentode.tistory.com)
 
 ## 정리
 |<center>표현식</center>|<center>설명</center>|
@@ -27,6 +26,8 @@
 두 가지 경우에는 경로가 명시되어 있는 "/login/loginForm.do"가 우선된다.
 
 ## 예제
+> 출처: [pentode.tistory.com](pentode.tistory.com)
+
 ### 디렉토리 구조
 ![Tree](images/security-ex1-tree.png)
 
