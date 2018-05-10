@@ -1,5 +1,23 @@
 # Spring Security
 
+## 개요
+### 순서도
+> 출처: http://www.egovframe.go.kr/wiki/doku.php?id=egovframework:rte:fdl:server_security:architecture
+
+![flow-chart](images/security-flowchart.png)
+1. 링크 클릭
+2. 요청에 대해 보호되고 있는 자원인지 판단
+3. 아직 인증이 안되었으므로 HTTP 응답코드(오류) 또는 특정 페이지로 redirect
+4. 인증 메커니즘에 따라 웹 페이지 로그인 폼 또는 X509 인증서
+5. 입력 폼의 내용을 HTTP post 또는 인증 세부사항 포함하는 HTTP 헤더로 서버 요청
+6. 신원정보(credential)가 유효한지 판단
+	* 유효한 경우 다음단계 진행
+	* 유효하치 않을 경우 신원정보 재요청(되돌아감)
+7. 보호 자원의 접근 권한이 있을 경우 요청 성공 / 접근 권한 없을 경우 forbidden 403 HTTP 오류
+
+
+
+
 ## 정리
 |<center>표현식</center>|<center>설명</center>|
 |---|---|
