@@ -15,8 +15,8 @@
 	* 유효하치 않을 경우 신원정보 재요청(되돌아감)
 7. 보호 자원의 접근 권한이 있을 경우 요청 성공 / 접근 권한 없을 경우 forbidden 403 HTTP 오류
 
-
-
+### DB Schema
+![DB Schema](images/security-db-schema.png)
 
 ## 정리
 |<center>표현식</center>|<center>설명</center>|
