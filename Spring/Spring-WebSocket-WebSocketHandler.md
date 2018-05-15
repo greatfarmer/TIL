@@ -1,9 +1,11 @@
 # Spring WebSocket
 
-## interface WebSocketHandler
-![interface-WebsocketHandler](images\websocket-WebsocketHandler-interface.png)
+## spring-websocket-4.2.5.RELEASE.jar
+### package org.springframework.web.socket
+### interface WebSocketHandler
+![interface-WebsocketHandler](images/websocket-WebsocketHandler-interface.png)
 
-![interface-WebsocketHandler-directory](images\websocket-WebsocketHandler-interface-directory.png)
+![interface-WebsocketHandler-directory](images/websocket-WebsocketHandler-interface-directory.png)
 
 ```java
 /*
@@ -87,8 +89,10 @@ public interface WebSocketHandler {
 
 }
 ```
+## package org.springframework.web.socket.handler
+![websocket-handler-directory](images/websocket-handler-directory.png)
 
-## class AbstractWebSocketHandler
+### class AbstractWebSocketHandler
 ```java
 /*
  * Copyright 2002-2013 the original author or authors.
