@@ -117,17 +117,71 @@ public class SqlExecution {
 
 ## pom.xml
 ```xml
-<!-- Spring Mybatis -->
-<dependency>
-    <groupId>org.mybatis</groupId>
-    <artifactId>mybatis</artifactId>
-    <version>3.1.1</version>
-</dependency>
-<dependency>
-    <groupId>org.mybatis</groupId>
-    <artifactId>mybatis-spring</artifactId>
-    <version>1.2.2</version>
-</dependency>
+<!-- oracle repository -->
+<repositories>
+    <repository>
+        <id>oracle</id>
+        <name>ORACLE JDBC Repository</name>
+        <url>http://maven.jahia.org/maven2</url>
+    </repository>
+</repositories>
+<dependencies>
+    ...
+    <!-- Spring Mybatis -->
+    <dependency>
+        <groupId>org.mybatis</groupId>
+        <artifactId>mybatis</artifactId>
+        <version>3.1.1</version>
+    </dependency>
+    <dependency>
+        <groupId>org.mybatis</groupId>
+        <artifactId>mybatis-spring</artifactId>
+        <version>1.2.2</version>
+    </dependency>
+
+    <!-- oracle jdbc -->
+    <dependency>
+        <groupId>com.oracle</groupId>
+        <artifactId>ojdbc6</artifactId>
+        <version>12.1.0.1</version>
+        <scope>runtime</scope>
+    </dependency>
+    ...
+</dependencies>
+```
+
+## root-context.xml
+```xml
+<!-- 공통 DB작업  -->
+ <bean id="driverManagerDataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+ 	<property name="driverClassName" value="oracle.jdbc.driver.OracleDriver" />
+ 	<property name="url" value="jdbc:oracle:thin:@localhost:1521:XE" />
+ 	<property name="username" value="springuser" />
+ 	<property name="password" value="1004" />
+ </bean>
+
+<!-- JDBCTemplate -->
+ <bean id="" class="org.springframework.jdbc.core.JdbcTemplate" >
+ 	<property name="dataSource" ref="driverManagerDataSource"></property>
+ </bean>
+
+<!-- Mybatis 설정
+기본 자바코드 : SqlMapConfig.xml 에서 설정했던 작업 (DB연결 ,mapper 설정)
+파일 없어지고 설명파일안에서   > SqlSessionFactoryBean
+기존 java 코드 : builder 사용 > Factory 객체 > sqlsession 생성 > 사용
+
+두개의 클래스가 위 작업 처리
+SqlSessionFactoryBean
+SqlSessionTemplate
+ -->
+<bean id="sqlSessionFactoryBean" class="org.mybatis.spring.SqlSessionFactoryBean">
+    <property name="dataSource" ref="driverManagerDataSource"></property>
+    <property name="mapperLocations" value="classpath*:mapper/*xml" />
+</bean>
+
+<bean id="sqlSession" class="org.mybatis.spring.SqlSessionTemplate">
+  <constructor-arg index="0" ref="sqlSessionFactoryBean"/>
+</bean>
 ```
 
 ## 주의사항
