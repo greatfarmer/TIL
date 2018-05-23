@@ -108,11 +108,26 @@ public class SqlExecution {
 
 ## 작성 순서
 ```
-1. Mybatis 설정 (LIB) >> POM.xml
+1. Mybatis 설정 (LIB) >> pom.xml
 2. Oracle 원격 저장소 Maven설정 >> dependency
 3. Mybatis > Config.xml (DB연결, Mapper 설정) > 별도의 객체를 설정...
             Spring -> 설정(Bean 객체를 ...작업)
 4. mapper 파일 생성 (NoticeDao 인터페이스 연결)
+```
+
+## pom.xml
+```xml
+<!-- Spring Mybatis -->
+<dependency>
+    <groupId>org.mybatis</groupId>
+    <artifactId>mybatis</artifactId>
+    <version>3.1.1</version>
+</dependency>
+<dependency>
+    <groupId>org.mybatis</groupId>
+    <artifactId>mybatis-spring</artifactId>
+    <version>1.2.2</version>
+</dependency>
 ```
 
 ## 주의사항
