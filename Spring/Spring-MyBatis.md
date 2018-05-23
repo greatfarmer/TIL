@@ -184,6 +184,133 @@ SqlSessionTemplate
 </bean>
 ```
 
+## NoticeDao.xml
+```xml
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!--
+	//게시물 개수
+	public int getCount(String field, String query) throws ClassNotFoundException, SQLException;
+	//전체 게시물
+	public List<Notice> getNotices(int page, String field, String query) throws ClassNotFoundException, SQLException;
+	//게시물 삭제
+	public int delete(String seq) throws ClassNotFoundException, SQLException;
+	//게시물 수정
+	public int update(Notice notice) throws ClassNotFoundException, SQLException;
+	//게시물 상세
+	public Notice getNotice(String seq) throws ClassNotFoundException, SQLException;
+	//게시물 입력
+	public int insert(Notice n) throws ClassNotFoundException, SQLException;
+-->
+<mapper namespace="dao.NoticeDao">
+	<!-- 초강력 주의!
+		<select id="getCount" resultType="Integer">
+			SELECT COUNT(*) CNT
+			FROM NOTICES
+			WHERE ${param1} LIKE '%${param2}%'; <- 처럼 ; 붙이면 안됨!!!!
+		</select>
+	 -->
+	<!--
+		parameter 1개 (생략)
+		parameter 2개 이상 ...DTO 없는 경우: hashMap
+		parameter 2개 이상 ...DTO > vo.Notice
+
+		KEY POINT
+		parameter 1개 생략: #{value} > 1개는 param1 적용 (x)
+		parameter 2개 이상: getCount(String field, String query)
+
+		1. 순서
+		> String field > param1,
+		> String query > param2
+
+	-->
+	<select id="getCount" resultType="Integer">
+		SELECT COUNT(*) CNT
+		FROM NOTICES
+		WHERE ${param1} LIKE '%${param2}%'
+	</select>
+	<!--
+	//전체 게시물
+		public List<Notice> getNotices(int page, String field, String query) throws ClassNotFoundException, SQLException;
+
+		parameter logic:
+		int srow = 1 + (page-1)*5;
+		int erow = 5 + (page-1)*5;
+
+		parameter: int page, String field, String query
+		param1, param2, param3
+
+		1건 이상: return List<Notice>;
+		1건: return Notice;
+	-->
+	<select id="getNotices" resultType="vo.Notice">
+		SELECT * FROM
+			(SELECT ROWNUM NUM, N.* FROM
+				(SELECT * FROM NOTICES WHERE ${param2} LIKE '%${param3}%' ORDER BY REGDATE DESC) N)
+		WHERE NUM BETWEEN 1 + (${param1}-1)*5 AND 5 + (${param1}-1)*5
+	</select>
+	<!--
+	//게시물 상세
+		public Notice getNotice(String seq);
+		parameter 1개 생략 가능: param1 안되요
+	-->
+	<select id="getNotice" resultType="vo.Notice">
+		SELECT seq,title,writer,content,regdate,hit,filesrc,filesrc2
+		FROM NOTICES
+		WHERE SEQ=#{seq}
+	</select>
+	<!--
+		public int delete(String seq)
+		delete, insert, update returntype (x)
+	-->
+	<delete id="delete">
+		DELETE NOTICES WHERE SEQ=#{seq}
+	</delete>
+	<!--
+	//게시물 수정
+		public int update(Notice notice);
+		원칙: <update id="update" parameterType="vo.Notice">
+		VO, DTO 타입 Parameter 사용시 생략가능:
+
+		FILESRC=#{fileSrc}
+		FILESRC2=#{fileSrc2}
+
+		파일 수정: null, null
+		한개 수정: null, 1.jpg
+		두개 수정: 1.jpg, 2.jpg
+
+		#{fileSrc, jdbcType=VARCHAR}로 정의하면, 값이 없을 경우: 기본타입으로 update
+	-->
+	<update id="update">
+		UPDATE NOTICES
+		SET TITLE=#{title},
+		CONTENT=#{content},
+		FILESRC=#{fileSrc, jdbcType=VARCHAR},
+		FILESRC2=#{fileSrc2, jdbcType=VARCHAR}
+		WHERE SEQ=#{seq}
+	</update>
+	<!--
+		//게시물 입력
+		public int insert(Notice n)
+		Parameter 생략 가능: Notice n
+
+		INSERT INTO NOTICES(SEQ, TITLE, CONTENT, WRITER, REGDATE, HIT, FILESRC , FILESRC2)
+		VALUES( (SELECT MAX(TO_NUMBER(SEQ))+1 FROM NOTICES), ?, ?, 'newleckosta', SYSDATE, 0, ?,?)
+
+		selectKey 사용
+	-->
+	<insert id="insert">
+		<selectKey order="BEFORE" keyProperty="seq" resultType="String">
+			SELECT MAX(TO_NUMBER(SEQ))+1 FROM NOTICES
+		</selectKey>
+		INSERT INTO NOTICES(SEQ, TITLE, CONTENT, WRITER, REGDATE, HIT, FILESRC , FILESRC2)
+		VALUES(#{seq}, #{title}, #{content}, 'bituser', SYSDATE, 0, #{fileSrc, jdbcType=VARCHAR}, #{fileSrc2, jdbcType=VARCHAR})
+	</insert>
+</mapper>
+```
+
 ## 주의사항
 ```
 전제조건: 특정한 이름(예: boardid)으로 UI, Java, DB단을 매핑시켜줘야 한다.
