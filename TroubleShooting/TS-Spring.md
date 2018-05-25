@@ -23,6 +23,15 @@ $.each(apiUrl, function(urlIndex, urlObj) {
                    success:function(data){ ...
 ```
 
+### 2차 프로젝트 문제
+문제
+```
+카드의 cardNum 값을 상세페이지 Modal창에 넘기지 못하는 문제
+```
+해결
+```
+<input type="hidden" id=cardNum>을 사용하여 태그에 id를 숨겨서 cardNum값 넘김
+```
 
 ### MyBatis 오류
 문제
