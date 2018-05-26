@@ -33,6 +33,23 @@ $.each(apiUrl, function(urlIndex, urlObj) {
 <input type="hidden" id=cardNum>을 사용하여 태그에 id를 숨겨서 cardNum값 넘김
 ```
 
+### Fullcalendar
+문제
+```
+fullcalendar에서 일정 추가시 datepicker에서
+받은 종료일이 하루 모자르게 표시되는 부분
+```
+해결
+```
+function dateProcess(dateStr, days){ //date가공 메서드
+                                var date = new Date(dateStr); //Date 객체 생성
+                                date.setDate(date.getDate() + days); //Date 가감설정
+                                var dateToISO = date.toISOString().substring(0,10); //Date -> String (ISO날짜 타입, 시간제거)
+                                return dateToISO;
+                        }
+위의 함수를 사용하여 실제날짜, 화면에 출력되는 날짜의 원하는 date로 설정함
+```
+
 ### MyBatis 오류
 문제
 ```
