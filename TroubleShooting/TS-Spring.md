@@ -26,7 +26,11 @@ $.each(apiUrl, function(urlIndex, urlObj) {
 ### 2차 프로젝트 문제
 문제
 ```
-카드의 cardNum 값을 상세페이지 Modal창에 넘기지 못하는 문제
+1. 카드의 cardNum 값을 상세페이지 Modal창에 넘기지 못하는 문제
+2. fullcalendar에서 종료일 end: '2018-04-10' 으로 하면 달력에는
+2018-04-09까지 표시되고 editable이 가능하며,
+end: '2018-04-10T23::59:59' 로 하면 달력에는 
+2018-04-10까지 표시되나 editable이 불가능한 문제
 ```
 해결
 ```
