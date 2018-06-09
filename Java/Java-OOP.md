@@ -83,6 +83,42 @@ private int age = 100;
 * 클래스 내부 자원에 적용 >> method: private void call() {}
     * 함수를 private로 하는 이유: 클래스내부에서 다른 함수를 도와주는 역할 하는 함수 (보조함수)
 
+### 메서드 오버로딩(method overloading)
+```
+하나의 이름으로 여러가지 기능을 하는 함수
+사용: println() 대표적인 함수
+특징: 오버로딩은 성능 향상에 도움을 준다 (x) -> 상관없다
+     why) 개발자가 편하게 사용하려고
+                설계시 어떤 점을 생각하면: 함수의 활용이 많은 경우 (parameter 변경)
+                ex)System.out.println() : static이면서 overloading
+
+문법: 함수(메서드)의 이름은 같고 parameter의 개수와 타입을 달리하는 방법
+1. 함수(메서드)의 이름은 같아야 한다
+2. [parameter] 개수 또는 [type]은 달라야 한다
+3. return type은 overloading 판단 기준 (x) -> return type이 같아야 한다
+4. parameter 순서가 다름을 인정한다
+```
+
+### 생성자 함수(constructor)
+```
+1.함수 ("특수한 목적"을 가지는 함수)
+2.특수한 목적 (member field 초기화)
+
+3.일반함수와 다른점
+  3.1 함수의 이름이 고정 (class 이름과 동일)
+  3.2 return type(x), void(x) >> 사실은 모든 생성자 함수 (void)
+  3.3 why void (default): 실행시점: 객체생성과 동시에 호출되는 함수: 생성된 값을 받을 녀석이 없음
+  3.4 일반함수 (이름을 호출: print();), 생성자 함수는 new를 통해서 class가 객체로 만들어 질 때
+
+4.목적: 생성되는 객체마다 다른 초기값을 부여할 때
+
+5.함수는 overloading이 가능하다 (생성자 함수도 overloading 사용)
+
+new Car(); 메모리에 올릴 때 함수를 호출하면서 올리겠다는 의미 (default constructor)
+
+class 생성시 default 생성자는 생략 가능 >> 컴파일러가 만듦
+```
+
 ## 관련 예제 코드
 > [Ex01_Ref_Type.java](https://drive.google.com/file/d/18nMyX6HLSWDVJGfzEwzu6h0QFnXfO4Gs/view?usp=sharing)
 
