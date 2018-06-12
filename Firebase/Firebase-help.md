@@ -1,4 +1,5 @@
 # Google Firebase 도움 사이트
+> [Firebase web simple chat client with channels](https://github.com/epoberezkin/firebase-chat)
 
 > [Firebase Web 채팅앱 만들기](http://cionman.tistory.com/51)
 
