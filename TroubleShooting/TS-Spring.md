@@ -23,7 +23,7 @@ $.each(apiUrl, function(urlIndex, urlObj) {
                    success:function(data){ ...
 ```
 
-### 2차 프로젝트 문제
+### Fullcalendar 문제
 문제
 ```
 1. 카드의 cardNum 값을 상세페이지 Modal창에 넘기지 못하는 문제
@@ -37,7 +37,7 @@ end: '2018-04-10T23::59:59' 로 하면 달력에는
 <input type="hidden" id=cardNum>을 사용하여 태그에 id를 숨겨서 cardNum값 넘김
 ```
 
-### Fullcalendar
+### Fullcalendar 문제
 문제
 ```
 fullcalendar에서 일정 추가시 datepicker에서
@@ -66,4 +66,15 @@ org.apache.ibatis.binding.BindingException: Type interface kr.co.kang.dao.UserDa
 classpath에 .이 아니고 /로 폴더 구분 해야 된다.
 기존: <property name="mapperLocations" value="classpath*:kr.co.kang.mapper/*.xml" />
 해결: <property name="mapperLocations" value="classpath*:kr/co/kang/mapper/*.xml" />
+```
+
+### Tomcat 오류 (2018.06.21)
+문제
+```
+톰캣 서버 실행하면 HTTP Status 404 – Not Found 에러가 발생
+```
+
+해결
+```java
+@RequestMapping("allProjectCount") 중복이 존재했다. 코드를 잘 살펴보자!
 ```
