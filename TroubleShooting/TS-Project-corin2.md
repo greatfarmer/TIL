@@ -28,7 +28,7 @@ WebSocket and SockJS allowed origins can be configured as shown bellow:
 아래 코드들을 추가 및 변경
 
 ##### WebSocketConfig.java 추가
-```
+```java
 package site.corin2.ws;
 
 import org.springframework.context.annotation.Bean;
