@@ -30,3 +30,6 @@ git rm -r --cached .
 git add .
 git commit -m "reset tracking files"
 ```
+
+## 언어와 프레임워크, OS 별로 원격저장소에서 제외시킬 파일 확장자를 관리해주는 API 사이트
+> https://www.gitignore.io/
