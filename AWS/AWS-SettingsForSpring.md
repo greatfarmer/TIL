@@ -16,10 +16,12 @@ data/AWS 발표자료.pptx
 > http://all-record.tistory.com/186
 
 ## Spring & AWS S3(using sdk for java) 연동
-> https://docs.minio.io/docs/how-to-use-aws-sdk-for-java-with-minio-server
+> https://docs.aws.amazon.com/ko_kr/AmazonS3/latest/dev/RetrievingObjectUsingJava.html
 > https://docs.aws.amazon.com/ko_kr/AmazonS3/latest/dev/UsingTheMPJavaAPI.html
-> http://jojoldu.tistory.com/300
 > https://shj7242.github.io/2017/12/28/Spring34/
+> http://jojoldu.tistory.com/300
+> https://docs.minio.io/docs/how-to-use-aws-sdk-for-java-with-minio-server
+> http://blog.woniper.net/218
 
 ## Elastic IP가 존재할 경우, Route 53을 통해 도메인 연결
 > http://wingsnote.com/57
