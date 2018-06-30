@@ -1,8 +1,51 @@
 # TroubleShooting: 코린이 프로젝트(2018-05-21 ~ 2018-07-17)
 
+## GIT
+### sourcetree에서 git push시 권한 에러 [2018-06-05]
+#### 문제
+```
+git -c diff.mnemonicprefix=false -c core.quotepath=false push -v --tags --set-upstream origin feature/announce:feature/announce
+remote: Permission to corin2/corin2.git denied to jjstudy.
+fatal: unable to access 'https://github.com/corin2/corin2.git/': The requested URL returned error: 403
+
+Pushing to https://github.com/corin2/corin2.git
+Completed with errors, see above.
+```
+
+#### 해결
+```
+로컬PC의 github키를 삭제(windows 기준)
+: 제어판 - 사용자 계정 - 자격 증명 관리 - Windows 자격 증명 - 일반 자격 증명에서 github키 제거
+
+ 그 후 push를 해보면 github사용자 계정을 다시 물어봄.
+ 이 방법의 단점은 로컬PC의 초기 사용자가 아니라면 다시 키 제거를 해야함.
+```
+
+## MariaDB
+
+### MariaDB에서 오라클의 SYSDATE와 같이 현재 날짜, 시간 입력 [2018-06-04]
+```
+NOW(), SYSDATE()
+
+[NOW()와 SYSDATE()의 차이]
+SELECT * FROM t1 WHERE u_date > NOW()
+SELECT * FROM t1 WHERE u_date > SYSDATE()
+
+NOW()와 SYSDATE()의 차이는 쿼리가 길어질 경우 출력 되는 시간이 고정되느냐 변하느냐에 따른 차이가 있습니다.
+NOW()는 쿼리가 처음 시작되는 시간이 고정되지만 SYSDATE()는 연산할 때 마다 시간이 변합니다.
+
+예를들어, 애플리케이션에서 1만 건이 되는 유저 정보를 현재 날짜,시간과 함께 조회한다고 가정하겠습니다.
+이 때 현재 날짜,시간을 모두 동일하게 출력하고 싶다면 NOW()를 써야 합니다.
+즉, 1만 건의 유저 정보가 테이블에 SELECT 되는 동안 컴퓨터가 아무리 빨라도 시간이 걸릴 것이며, 그 때 마다 현재 시간은 변하게 될 것입니다.
+
+NOW()는 쿼리가 시작되는 그 순간의 시간을 고정시키지만,
+SYSDATE()는 조회가 이루어지는 row 단위로 시간이 변하게 됩니다.
+```
+> http://victorydntmd.tistory.com/143
+
 ## Spring
 
-### AWS EC2를 통해 배포 후 corin2.site로 접속했을 때 웹소켓이 동작하지 않음 (아래 오류)
+### AWS EC2를 통해 배포 후 corin2.site로 접속했을 때 웹소켓이 동작하지 않음 (아래 오류) [2016-06-26]
 #### 문제
 ```
 Error during WebSocket handshake: Unexpected response code: 403
