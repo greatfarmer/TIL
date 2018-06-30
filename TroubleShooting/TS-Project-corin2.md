@@ -154,3 +154,55 @@ public class WebSocketConfig implements WebSocketConfigurer{
 <br>6. http://egloos.zum.com/namelessja/v/4160294
 <br>7. http://syaku.tistory.com/285
 <br>8.https://spring.io/guides/gs/rest-service-cors/
+
+## 보안
+### AWS S3 Key 관리 [2018-06-30]
+#### 문제
+AWS S3 Key 보안을 위한 .properties 파일 사용법
+
+#### 해결
+##### src/main/resources/properties/s3Key.properties
+```
+//주의사항: 내용에 " "를 붙여주지 않는다.
+s3.accessKey = EX0123456789Q
+```
+
+##### PropertiesTest.java
+```java
+package site.corin2.uploadtest;
+
+import org.junit.Test;
+import org.springframework.util.ResourceUtils;
+
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.util.Properties;
+import java.io.File;
+
+
+public class PropertiesTest {
+
+    public static Properties fetchProperties(){
+        Properties properties = new Properties();
+        try {
+            // 경로: src/main/resources/properties/파일명.properties
+            File file = ResourceUtils.getFile("classpath:properties/s3Key.properties");
+            InputStream in = new FileInputStream(file);
+            properties.load(in);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return properties;
+    }
+
+    @Test
+    public void proTest() {
+                System.out.println("권한도메인: " + fetchProperties().getProperty("s3.accessKey"));
+        }
+}
+```
+> https://stackoverflow.com/questions/9259819/how-to-read-values-from-properties-file
+
+#### 참고 (AWS EC2에서 IAM으로 Key 관리)
+> http://jojoldu.tistory.com/300
