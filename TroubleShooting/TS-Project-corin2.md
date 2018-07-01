@@ -43,9 +43,33 @@ SYSDATE()는 조회가 이루어지는 row 단위로 시간이 변하게 됩니�
 ```
 > http://victorydntmd.tistory.com/143
 
+## JavaScript
+### JavaScript에서 함수의 범위 [2018-07-01]
+
+```javascript
+$(function() {
+  function getChatUsers() {
+    ...
+  }
+});
+```
+```
+위의 getChatUsers함수는 사용범위가 document.ready($function() { ... {)) 내로 한정된다. (지역변수 같이)
+이 함수를 다른 document.ready밖의 범위 혹은 다른 script파일에서 사용하고 싶으면 (전역변수 같이)
+아래와 같이 함수가 사용되는 document.reday범위 내에서 window.getChatUsers = getChatUsers;를 사용해주면 가능하다.
+```
+```javascript
+$(function() {
+  window.getChatUsers = getChatUsers;
+  function getChatUsers() {
+    ...
+  }
+});
+```
+
 ## Spring
 
-### AWS EC2를 통해 배포 후 corin2.site로 접속했을 때 웹소켓이 동작하지 않음 (아래 오류) [2016-06-26]
+### AWS EC2를 통해 배포 후 corin2.site로 접속했을 때 웹소켓이 동작하지 않음 (아래 오류) [2018-06-26]
 #### 문제
 ```
 Error during WebSocket handshake: Unexpected response code: 403
