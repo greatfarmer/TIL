@@ -68,6 +68,40 @@ $(function() {
 ```
 
 ## Spring
+### Spring MVC + TOMCAT 실행시 한글처리가 되지 않는 부분 [2018-06-06]
+##### [Tomcat 설정]
+```xml
+<!-- (server.xml) -->
+<Connector URIEncoding="UTF-8" connectionTimeout="20000" port="8090"protocol="HTTP/1.1"redirectPort="8443"/>
+```
+
+##### [Spring MVC 프로젝트 설정]
+```xml
+<!-- (web.xml) -->
+  <filter>
+    <filter-name>EncodingFilter</filter-name>
+    <filter-class>org.springframework.web.filter.CharacterEncodingFilter</filter-class>
+    <init-param>
+      <param-name>encoding</param-name>
+      <param-value>UTF-8</param-value>
+    </init-param>
+  </filter>
+  <filter-mapping>
+    <filter-name>EncodingFilter</filter-name>
+    <url-pattern>/*</url-pattern>
+  </filter-mapping>
+```
+
+### Spring Security: ${SPRING_SECURITY_LAST_EXCEPTION.message} 값이 Bad conflict 발생 [2018-06-08]
+```
+password와 id값이 맞지 않아서 권한 에러가 난 것 이다. 쿼리 문을
+
+users-by-username-query="SELECT userid AS username, password, enabled as enabled FROM user WHERE userId= ?"
+authorities-by-username-query="select userid, g.GRADENAME as ROLE_NAME from user u JOIN usergrade g on u.gradenum = g.gradenum where u.userId=?"
+로 변경을 했더니 인증이 성공했다.
+
+컬럼 명을 신경 써서 mapping해주어야 한다.
+```
 
 ### AWS EC2를 통해 배포 후 corin2.site로 접속했을 때 웹소켓이 동작하지 않음 (아래 오류) [2018-06-26]
 #### 문제
