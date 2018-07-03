@@ -103,6 +103,42 @@ authorities-by-username-query="select userid, g.GRADENAME as ROLE_NAME from user
 컬럼 명을 신경 써서 mapping해주어야 한다.
 ```
 
+### login.html 파일이 프로젝트 run시 불러지지 않는 문제 [2018-06-14]
+#### web.xml
+```xml
+<welcome-file-list>
+    <!-- 여기서 /login.html처럼 앞에 /를 넣으면 안된다! -->
+    <welcome-file>login.html</welcome-file>
+</welcome-file-list>
+```
+
+### jsonview 가 정상적으로 작동 하지 않았다. [2018-06-14]
+```
+pom.xml에 jsonview을 사용할 수 있는 의존 <dependency>가 다른버전으로 2개가 있었다. (중복 잘 확인 할 것)
+```
+
+### .classpath 설정 [2018-06-14]
+#### 문제
+```
+Spring 폴더 구조가 site.corin2.controller 처럼 보여야 하나
+트러블슈팅의 코드가 .classpath파일에 존재하면
+site
+└corin2
+    └controller
+와 같이 보인다.
+```
+
+#### 해결
+아래의 코드가 .classpath 파일에 존재했기 때문이다.
+```xml
+<classpathentry excluding="**" kind="src" output="target/test-classes" path="src/test/resources">
+    <attributes>
+        <attribute name="maven.pomderived" value="true"/>
+    </attributes>
+</classpathentry>
+<classpathentry kind="con" path="org.eclipse.m2e.MAVEN2_CLASSPATH_CONTAINER">
+```
+
 ### AWS EC2를 통해 배포 후 corin2.site로 접속했을 때 웹소켓이 동작하지 않음 (아래 오류) [2018-06-26]
 #### 문제
 ```
@@ -264,3 +300,93 @@ public class PropertiesTest {
 
 #### 참고 (AWS EC2에서 IAM으로 Key 관리)
 > http://jojoldu.tistory.com/300
+
+## Firebase
+### Java Admin SDK를 사용하여 Firebase의 Realtime Database에 데이터를 입력했을 때, 정상적으로 입력이 되지 않았던 문제 [2018-06-11]
+
+Java 클래스의 main함수를 통해 실행시킬 경우, Firebase의 Realtime DB에 수신되기 전에 main함수가 종료되어 버리는 것이 가장 큰 원인. <br>
+덧붙여 Firebase의 리스너는 비동기방식이므로, Firebase 서버와 통신하기위해서 자체 데몬 스레드를 관리해야한다. <br>
+따라서, Java 클래스에서는 Firebase의 리스너가 트리거될 때 까지 아래 코드와 같이 latch로 메인 스레드를 차단하여 리스너를 기다리는 방식으로 문제를 해결했다. <br>
+
+> https://stackoverflow.com/questions/44548932/grab-data-from-firebase-with-java
+https://stackoverflow.com/questions/46906163/how-to-write-data-to-firebase-with-a-java-program
+
+#### [소스 코드]
+```java
+package site.corin2.chatting;
+
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.util.concurrent.CountDownLatch;
+
+import com.google.auth.oauth2.GoogleCredentials;
+import com.google.firebase.FirebaseApp;
+import com.google.firebase.FirebaseOptions;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+
+import site.corin2.model.User;
+
+public class FirebasePut {
+    private static final String SERVICE_ACCOUNT_JSON = "D://testcorin2-firebase-adminsdk.json";
+    private static final String DATABASE_URL = "https://testcorin2.firebaseio.com/";
+
+    private static DatabaseReference database;
+
+    public static void addUsers() {
+            DatabaseReference ref = database.child("user");
+            ref.child("user02").setValueAsync((new User("gigi@naver.com", "pic", "hihi")));
+    }
+
+    public static void startListeners() {
+            final CountDownLatch latch = new CountDownLatch(1);
+            database.addValueEventListener(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(DataSnapshot snapshot) {
+                            Object document = snapshot.getValue();
+                            System.out.println("받는 문서: " + document);
+                            latch.countDown();
+                    }
+                    @Override
+                    public void onCancelled(DatabaseError error) {
+                            System.out.println("Error: " + error.getMessage());
+                            latch.countDown();
+                    }
+            });
+            try {
+                    latch.await();
+            } catch (Exception e) {
+                    e.printStackTrace();
+            }
+    }
+
+    public static void main(String[] args) {
+    // Initialize Firebase
+    try {
+            // [START initialize]
+            FileInputStream serviceAccount = new FileInputStream(SERVICE_ACCOUNT_JSON);
+            FirebaseOptions options = new FirebaseOptions.Builder()
+                    .setCredentials(GoogleCredentials.fromStream(serviceAccount))
+                .setDatabaseUrl(DATABASE_URL)
+                .build();
+            FirebaseApp.initializeApp(options);
+            // [END initialize]
+    } catch (IOException e) {
+            e.getStackTrace();
+    }
+
+    // Shared Database reference
+    database = FirebaseDatabase.getInstance().getReference();
+
+    // Add Users
+    addUsers();
+
+    // Start listening to the Database
+    startListeners();
+
+    }
+}
+```
