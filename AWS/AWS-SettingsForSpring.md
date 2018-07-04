@@ -27,12 +27,45 @@ data/AWS 발표자료.pptx
 > http://wingsnote.com/57
 
 ## AWS EC2 ubuntu에서 tomcat 구동 시 느릴 경우 조치
+첫번째 방법
 ```
 > sudo vi /usr/share/tomcat8/bin/catalina.sh
 
 catalina.sh을 열어서 '#!/bin/sh' 바로 아래에 옵션 추가
 JAVA_OPTS="$JAVA_OPTS -Djava.security.egd=file:/dev/./urandom"
 ```
+두번째 방법
+```
+> cat /proc/sys/kernel/random/entropy_avail
+
+먼저 패키지를 설치하기 전에 다음 명령어를 통하여 현재 entropy를 확인한다.
+결과치가 1000 이하일 경우 haveged를 설치할 것을 권장하고 있다.
+
+> sudo apt-get install haveged
+
+```
 > http://www.hwangji.kr/sub/dev_leader/link/os/default.aspx?NHBBSID=NHBoardWebTip&NHBBSIDX=74 <br>
 > http://lng1982.tistory.com/261 <br>
 > http://mikelim.mintocean.com/entry/Ubuntu%EC%97%90%EC%84%9C-tomcat%EC%9D%B4-%EB%8A%90%EB%A6%AC%EA%B2%8C-%EB%A1%9C%EB%93%9C-%EB%90%A0-%EB%95%8C
+
+## AWS EC2 ubuntu에서 tomcat 구동 시 handler processing failed; nested exception is java.lang.outofmemoryerror: java heap space 에러 조치
+JVM heap memory 용량 부족 에러: ubuntu의 톰캣 설정에서 메모리 설정을 변경
+```
+> sudo vi /usr/share/tomcat8/bin/catalina.sh
+
+catalina.sh을 열어서 '#!/bin/sh' 바로 아래에 옵션 추가
+JAVA_OPTS="$JAVA_OPTS -Xms256m -Xmx1024m -XX:MaxPermSize=128m"
+```
+> http://mycup.tistory.com/215
+> https://okky.kr/article/319932
+
+## AWS EC2 ubuntu에서 tomcat 구동 시 한글처리
+server.xml
+```xml
+<Connector port="8080" protocol="HTTP/1.1"
+              connectionTimeout="20000"
+              URIEncoding="UTF-8"
+              useBodyEncodingForURl="true"
+              redirectPort="8443" />
+```
+> http://kingko.tistory.com/entry/JDK
