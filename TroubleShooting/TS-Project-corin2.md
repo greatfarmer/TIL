@@ -390,3 +390,35 @@ public class FirebasePut {
     }
 }
 ```
+
+### 채팅목록에서 사용자 두 번 눌러야 채팅 시작되는 문제 [2018-06-16]
+문제
+```
+db.child('privateChats/').once('value', function(snapshot) 시점 문제인 것 같음
+```
+해결
+```
+시점이 아래와 같이 데이터를 불러주는 함수 안에서 채팅 출력 함수를 써야 한다.
+(이전 코드에서는 아래 함수 밖에 위치했었음)
+```
+```javascript
+db.child('privateChats/').once('value',function(snapshot) {
+    messages.on('child_added', showMessage); // DB변동 시 메시지 출력
+});
+```
+
+### 채팅에서 같은 채팅방을 2번, 3번 눌렀을 때, 2,3번 메시지가 반복해서 출력되는 현상 [2018-06-17]
+```javascript
+// DB변동 시 메시지 출력 함수
+var currentMessages;
+function showMessage() {
+        $('#conversation').empty(); // 대화창 초기화
+
+        if (currentMessages) {
+            // 현재 메시지의 리스너를 off() 함수로 제거해줘야 한다.
+            currentMessages.off('child_added', makeMessage);
+        }
+        messages.on('child_added', makeMessage); // DB변동 시 메시지 출력
+        currentMessages = messages;
+}
+```
