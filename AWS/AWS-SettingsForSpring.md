@@ -27,5 +27,12 @@ data/AWS 발표자료.pptx
 > http://wingsnote.com/57
 
 ## AWS EC2 ubuntu에서 tomcat 구동 시 느릴 경우 조치
+```
+> sudo vi /usr/share/tomcat8/bin/catalina.sh
+
+catalina.sh을 열어서 '#!/bin/sh' 바로 아래에 옵션 추가
+JAVA_OPTS="$JAVA_OPTS -Djava.security.egd=file:/dev/./urandom"
+```
+> http://www.hwangji.kr/sub/dev_leader/link/os/default.aspx?NHBBSID=NHBoardWebTip&NHBBSIDX=74 <br>
 > http://lng1982.tistory.com/261 <br>
 > http://mikelim.mintocean.com/entry/Ubuntu%EC%97%90%EC%84%9C-tomcat%EC%9D%B4-%EB%8A%90%EB%A6%AC%EA%B2%8C-%EB%A1%9C%EB%93%9C-%EB%90%A0-%EB%95%8C
