@@ -23,6 +23,12 @@ data/AWS 발표자료.pptx
 > https://docs.minio.io/docs/how-to-use-aws-sdk-for-java-with-minio-server <br>
 > http://blog.woniper.net/218
 
+## AWS S3 등 Access Key를 github에서 관리
+[AWS 고객센터 원문]<br>
+We see a lot of keys accidentally exposed through GitHub because it does not scrape code for sensitive information when posting to your repository. Fortunately AWS has created a tool to help developers using GitHub avoid this problem.<br><br>
+If you use GitHub at all I recommend setting up our open source tool, git-secrets, to prevent users of your account from accidentally committing access keys. You can find the code and all documentation related to this tool here:
+> https://github.com/awslabs/git-secrets
+
 ## Elastic IP가 존재할 경우, Route 53을 통해 도메인 연결
 > http://wingsnote.com/57
 
