@@ -67,6 +67,15 @@ $(function() {
 });
 ```
 
+## STS
+### STS 속도가 느려짐 (코드 한줄 작성하는 것도 버벅임) [2018-06-18]
+```
+STS에서 window - preferences - General - Show heap status 체크 - OK
+했을 때, 화면 하단에 465M of 538M가 나왔다. 이 옆에 휴지통을 눌러줘서 heap memory 정리
+```
+> http://a-proteur.tistory.com/5 <br>
+http://blog.naver.com/PostView.nhn?blogId=ljpark6&logNo=221046462810&categoryNo=26&parentCategoryNo=0&viewDate=&currentPage=1&postListTopCurrentPage=1&from=search
+
 ## Spring
 ### Spring MVC + TOMCAT 실행시 한글처리가 되지 않는 부분 [2018-06-06]
 ##### [Tomcat 설정]
@@ -392,11 +401,11 @@ public class FirebasePut {
 ```
 
 ### 채팅목록에서 사용자 두 번 눌러야 채팅 시작되는 문제 [2018-06-16]
-문제
+#### 문제
 ```
 db.child('privateChats/').once('value', function(snapshot) 시점 문제인 것 같음
 ```
-해결
+#### 해결
 ```
 시점이 아래와 같이 데이터를 불러주는 함수 안에서 채팅 출력 함수를 써야 한다.
 (이전 코드에서는 아래 함수 밖에 위치했었음)
@@ -422,3 +431,22 @@ function showMessage() {
         currentMessages = messages;
 }
 ```
+
+### FirebaseDB에서 userid의 문자열 변경 [2018-06-19]
+#### 문제
+```
+ 예를 들어 te.st@test.com을 자바스크립트 div의 id값을 사용하기 위해 Uid를 te-st-test-com으로 문자열을 변경했다.
+ -> 문제점은 te.st@test.com과 te-st@test.com이 동일한 Uid로 인식한다는 점이다.
+ ```
+#### 해결
+ ```
+ 이러한 문제점을 해결하기위해, te-st@test.com를 base64로 인코딩을 했으나, dGUtc3RAdGVzdC5jb20= 와 같이 뒤에 =가 생겨서, div의 id값으로 사용하기 부적절했다.
+그래서 te-st@test.com를 md5암호화를 이용한 결과, B642B4217B34B1E8D3BD915FC65C4452로 div의 id값으로 적절한 값이 나왔다. 이를 통해 동일한 id가 들어가는 것을 방지했다.
+```
+##### md5 변환 script (사용 예)
+```javascript
+<script src="//cdnjs.cloudflare.com/ajax/libs/blueimp-md5/2.10.0/js/md5.min.js"></script>
+<script>
+var hash = md5("Message");
+</script>
+ ```
