@@ -21,6 +21,10 @@ Completed with errors, see above.
  이 방법의 단점은 로컬PC의 초기 사용자가 아니라면 다시 키 제거를 해야함.
 ```
 
+### git사용시 파일명.class가 계속 conflict나는 현상 [2018-06-20]
+Spring사용시 /target/ 하위 내용들은 컴파일 이후 실행파일들이기 때문에<br>
+.gitignore 파일에 추가하여 git commit에서 제외한다.
+
 ## MariaDB
 
 ### MariaDB에서 오라클의 SYSDATE와 같이 현재 날짜, 시간 입력 [2018-06-04]
@@ -42,6 +46,28 @@ NOW()는 쿼리가 시작되는 그 순간의 시간을 고정시키지만,
 SYSDATE()는 조회가 이루어지는 row 단위로 시간이 변하게 됩니다.
 ```
 > http://victorydntmd.tistory.com/143
+
+### mariaDB에서 substring 사용하기 [2018-06-23]
+```sql
+SELECT SUBSTRING_INDEX('admin@corin2.site', '@', -1)
+-- 결과 > corin2.site
+```
+
+## UI
+### 헤더에서 드롭다운이 짤려 보이는 현상 [2018-06-19]
+css 속성에 ```overflow: hidden;```을 작성한 것이 문제였다.<br>
+이를 지워줘야 드롭다운이 짤리지 않는다.
+
+### 스크롤을 채팅의 유저리스트div에서만 없애고 싶은 경우 [2018-06-20]
+스크롤 기능도 먹히면서, 스크롤바를 안보이게 하는 방법<br>
+(원하는 요소에만 적용할 수 있도록, 전체를 하려면 ::-webkit-scrollbar만 쓰면됨)<br>
+css에 아래 내용 추가 (원하는 요소::-webkit-scrollbar)
+```css
+.sideBar::-webkit-scrollbar {
+  display:none;
+}
+```
+> https://m.blog.naver.com/PostView.nhn?blogId=fageapp&logNo=220392875038&proxyReferer=https%3A%2F%2Fwww.google.co.kr%2F"a
 
 ## JavaScript
 ### JavaScript에서 함수의 범위 [2018-07-01]
@@ -66,6 +92,21 @@ $(function() {
   }
 });
 ```
+
+### ajax의 success에서 배열 push()가 되지 않았다. (ajax success밖에서는 동작했다)  [2018-06-23]
+ajax success는 비동기 성공시 동작하므로, 이를 동기식으로 변경해주야 한다.<br>
+따라서, ajax 옵션에 ```async: false``` 추가하여 동기식으로로 변경
+```javascript
+$.ajax({
+    url: "원하는URL",
+    datatype: "JSON",
+    async:false,
+    success: function(data) {
+            // 원하는 코드
+    }
+});
+```
+> http://ooz.co.kr/58
 
 ## STS
 ### STS 속도가 느려짐 (코드 한줄 작성하는 것도 버벅임) [2018-06-18]
@@ -147,6 +188,18 @@ site
 </classpathentry>
 <classpathentry kind="con" path="org.eclipse.m2e.MAVEN2_CLASSPATH_CONTAINER">
 ```
+
+### 톰캣 서버 실행하면 HTTP Status 404 – Not Found 에러가 발생
+```@RequestMapping("allProjectCount")``` 중복이 존재했다.<br>
+코드를 잘 살펴보자!
+
+## AWS
+### AWS RDS의 mariaDB에서 select * from user;를 하면 table 'user' doesn't exist 에러가 난다 [2018-06-23]
+AWS RDS에서는 리눅스에 mariaDB를 설치해 주는데, 리눅스에서는 기본적으로 테이블 대소문자 구별을 한다. <br>
+따라서 강제적으로 대소문자 구분하지 않게 하기 위해서는 ```/etc/``` 밑에 있는 mysql 설정파일인 ```my.cnf``` 파일에서 <br>
+```lower_case_table_names=1```을 설정해주어야 한다. (AWS RDS에서는 파라미터 그룹에서 설정)
+>http://egloos.zum.com/forbis/v/3500411
+<br>http://roqkffhwk.tistory.com/91
 
 ### AWS EC2를 통해 배포 후 corin2.site로 접속했을 때 웹소켓이 동작하지 않음 (아래 오류) [2018-06-26]
 #### 문제
@@ -258,7 +311,6 @@ public class WebSocketConfig implements WebSocketConfigurer{
 <br>7. http://syaku.tistory.com/285
 <br>8.https://spring.io/guides/gs/rest-service-cors/
 
-## 보안
 ### AWS S3 Key 관리 [2018-06-30]
 #### 문제
 AWS S3 Key 보안을 위한 .properties 파일 사용법
