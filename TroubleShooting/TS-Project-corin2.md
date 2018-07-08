@@ -193,6 +193,13 @@ site
 ```@RequestMapping("allProjectCount")``` 중복이 존재했다.<br>
 코드를 잘 살펴보자!
 
+
+## UBUNTU
+### ubuntu에서 war파일 톰캣폴더로 복사하는 명령어 [2018-06-23]
+```
+sudo cp corin2-20180623.war /usr/share/tomcat8/webapps
+```
+
 ## AWS
 ### AWS RDS의 mariaDB에서 select * from user;를 하면 table 'user' doesn't exist 에러가 난다 [2018-06-23]
 AWS RDS에서는 리눅스에 mariaDB를 설치해 주는데, 리눅스에서는 기본적으로 테이블 대소문자 구별을 한다. <br>
@@ -200,6 +207,22 @@ AWS RDS에서는 리눅스에 mariaDB를 설치해 주는데, 리눅스에서는
 ```lower_case_table_names=1```을 설정해주어야 한다. (AWS RDS에서는 파라미터 그룹에서 설정)
 >http://egloos.zum.com/forbis/v/3500411
 <br>http://roqkffhwk.tistory.com/91
+
+### AWS RDS DB적용했을 경우, 코린이 사이트에서 로그인이 되지 않는 문제 [2018-06-24]
+AWS RDS MariaDB 에서 데이터베이스 Super (root) 권한 행사해주어야 한다. <br>
+이는 파라미터그룹에서 ```log_bin_trust_function_creators=1``` 로 설정해주어야 한다.
+> http://luckyyowu.tistory.com/316
+
+### AWS RDS MariaDB에 Command Prompt로 접속하기 [2018-06-24]
+MariaDB Command Prompt 실행 후
+```
+> mysql -h corin2mariadb.cat5tvbkgafa.ap-northeast-2.rds.amazonaws.com -P 3306 -u corin2 -p```
+입력후, 비밀번호 입력하면 됨
+
+### AWS RDS의 MariaDB에서 insert에서 now()로 현재 시간을 넣으면 현재 오후 5시 10분에 넣었다고 했을 때 2018-06-24 08:08:37 와 같이 북미 시간으로 나온다. [2018-06-24]
+AWS RDS의 파라미터그룹에서 time_zone 항목을 Asia/Seoul로 변경하고 RDS 인스턴스를 재시작 해주면 적용된다.
+> http://lazyhoneyant.blogspot.com/2016/08/amazon-rds.html
+
 
 ### AWS EC2를 통해 배포 후 corin2.site로 접속했을 때 웹소켓이 동작하지 않음 (아래 오류) [2018-06-26]
 #### 문제
