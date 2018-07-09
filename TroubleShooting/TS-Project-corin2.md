@@ -53,6 +53,39 @@ SELECT SUBSTRING_INDEX('admin@corin2.site', '@', -1)
 -- 결과 > corin2.site
 ```
 
+### 정해진 기간 안에 날짜 추가 [2018-06-25]
+#### 문제
+```
+정해진 기간 안에 날짜 추가
+예) select ... as days where `date` is between '2018-06-20' and '2018-06-24'
+
+days
+----------
+2018-06-20
+2018-06-21
+2018-06-22
+2018-06-23
+2018-06-24
+```
+#### 해결
+```sql
+select * from
+(select adddate('1970-01-01',t4*10000 + t3*1000 + t2*100 + t1*10 + t0) gen_date from
+ (select 0 t0 union select 1 union select 2 union select 3 union select 4 union select 5 union select 6 union select 7 union select 8 union select 9) t0,
+ (select 0 t1 union select 1 union select 2 union select 3 union select 4 union select 5 union select 6 union select 7 union select 8 union select 9) t1,
+ (select 0 t2 union select 1 union select 2 union select 3 union select 4 union select 5 union select 6 union select 7 union select 8 union select 9) t2,
+ (select 0 t3 union select 1 union select 2 union select 3 union select 4 union select 5 union select 6 union select 7 union select 8 union select 9) t3,
+ (select 0 t4 union select 1 union select 2 union select 3 union select 4 union select 5 union select 6 union select 7 union select 8 union select 9) t4) v
+where gen_date between '2018-06-20' and '2018-06-24';
+```
+> https://stackoverflow.com/questions/14105018/generating-a-series-of-dates
+<br>http://chan77xx.tistory.com/79
+
+### 오라클> nvl(칼럼명,0)을 mysql로 하면? [2018-06-25]
+```sql
+mysql> ifnull(칼럼명,0)
+```
+
 ## UI
 ### 헤더에서 드롭다운이 짤려 보이는 현상 [2018-06-19]
 css 속성에 ```overflow: hidden;```을 작성한 것이 문제였다.<br>
@@ -333,6 +366,38 @@ public class WebSocketConfig implements WebSocketConfigurer{
 <br>6. http://egloos.zum.com/namelessja/v/4160294
 <br>7. http://syaku.tistory.com/285
 <br>8.https://spring.io/guides/gs/rest-service-cors/
+
+### AWS EC2의 ubuntu에 STS에서 maven deploy 실행시 오류 [2018-06-26]
+#### 문제
+[ERROR] Failed to execute goal org.codehaus.mojo:tomcat-maven-plugin:1.1:deploy (default-cli) on project controller: Cannot invoke Tomcat manager: Error writing to server
+
+#### 해결
+ubuntu의 tomcat-users.xml에서 아래와 같이 수정해주어야 한다.
+```xml
+<tomcat-users>
+  <role rolename="manager-gui"/>
+  <role rolename="manager-script"/>
+  <role rolename="manager-status"/>
+  <user username="myManagerId" password="secretP^wd" roles="manager-gui,manager-script,manager-status"/>
+</tomcat-users>
+```
+
+### AWS EC2의 ubuntu에서 톰캣을 동작시켰고 로그인화면까지 왔다.
+하지만 로그인이 되지 않는다. [2018-06-26]
+#### 문제
+```
+http://ec2-52-6-111-163.compute-1.amazonaws.com:8090/corin2/login.html?error=9999
+```
+
+#### 해결
+AWS RDS에 AWS EC2의 IP를 허용해주지 않았던 문제. RDS의 보안그룹의 인바운드 규칙에 <br>
+예) 52.111.22.33/32로 해주었더니 해결되었다.
+>http://tbang.tistory.com/53
+<br>https://blog.naver.com/carrotcarrot/220671342353
+
+### AWS로 배포했을 때, 웹소켓이 동작하지않음 [2018-06-26]
+기존의 ws://localhost:8090/ 을 ws://AWS의 public ip주소:포트번호로 해주어야 동작 - 예)ws://13.125.73.16:8090/
+> http://myeonguni.tistory.com/1535
 
 ### AWS S3 Key 관리 [2018-06-30]
 #### 문제
