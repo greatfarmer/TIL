@@ -233,6 +233,12 @@ site
 sudo cp corin2-20180623.war /usr/share/tomcat8/webapps
 ```
 
+### ubuntu에서 tomcat을 완전히 삭제 [2018-07-04]
+```
+> sudo apt-get purge --auto-remove tomcat8
+```
+> http://jdlab.tistory.com/305
+
 ## AWS
 ### AWS RDS의 mariaDB에서 select * from user;를 하면 table 'user' doesn't exist 에러가 난다 [2018-06-23]
 AWS RDS에서는 리눅스에 mariaDB를 설치해 주는데, 리눅스에서는 기본적으로 테이블 대소문자 구별을 한다. <br>
@@ -449,6 +455,10 @@ public class PropertiesTest {
 
 #### 참고 (AWS EC2에서 IAM으로 Key 관리)
 > http://jojoldu.tistory.com/300
+
+### S3 access key를 github에 push하지 않아야 한다. [2018-07-04]
+실수로라도 S3 access key를 github에 push하면, AWS에서 해당 git repository를 찾은 후 보안상 이유로 계정을 블록하게 된다.<br>
+이렇게 되면, 고객센터에 메일을 보내서 계정 블록을 해제해야 하는 수고와 시간이 든다. 보안이 정말 중요하다.
 
 ## Firebase
 ### Java Admin SDK를 사용하여 Firebase의 Realtime Database에 데이터를 입력했을 때, 정상적으로 입력이 되지 않았던 문제 [2018-06-11]
