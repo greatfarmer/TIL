@@ -460,6 +460,23 @@ public class PropertiesTest {
 실수로라도 S3 access key를 github에 push하면, AWS에서 해당 git repository를 찾은 후 보안상 이유로 계정을 블록하게 된다.<br>
 이렇게 되면, 고객센터에 메일을 보내서 계정 블록을 해제해야 하는 수고와 시간이 든다. 보안이 정말 중요하다.
 
+### AWS EC2 ubuntu에서 tomcat 구동 시 느릴 경우 조치 [2018-07-04]
+#### [첫번째 방법]
+```sudo vi /usr/share/tomcat8/bin/catalina.sh```<br>
+catalina.sh을 열어서 '#!/bin/sh' 바로 아래에 옵션 추가<br>
+```JAVA_OPTS="$JAVA_OPTS -Djava.security.egd=file:/dev/./urandom"```
+#### [두번째 방법]
+```cat /proc/sys/kernel/random/entropy_avail```<br>
+먼저 패키지를 설치하기 전에 다음 명령어를 통하여 현재 entropy를 확인한다.<br>
+결과치가 1000 이하일 경우 haveged를 설치할 것을 권장하고 있다.<br>
+```sudo apt-get install haveged```
+
+> http://www.hwangji.kr/sub/dev_leader/link/os/default.aspx?NHBBSID=NHBoardWebTip&NHBBSIDX=74
+<br>http://lng1982.tistory.com/261
+<br>http://mikelim.mintocean.com/entry/Ubuntu%EC%97%90%EC%84%9C-tomcat%EC%9D%B4-%EB%8A%90%EB%A6%AC%EA%B2%8C-%EB%A1%9C%EB%93%9C-%EB%90%A0-%EB%95%8C
+
+
+
 ## Firebase
 ### Java Admin SDK를 사용하여 Firebase의 Realtime Database에 데이터를 입력했을 때, 정상적으로 입력이 되지 않았던 문제 [2018-06-11]
 
