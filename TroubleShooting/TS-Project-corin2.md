@@ -239,6 +239,11 @@ sudo cp corin2-20180623.war /usr/share/tomcat8/webapps
 ```
 > http://jdlab.tistory.com/305
 
+### [관리자 페이지] - [이메일 관리]에서 vm파일 불러오기가 되지않는 문제 [2018-07-04]
+윈도우 환경에서 new FileReader(realpath+"\\signup.vm")를 <br>
+우분투 환경에서 new FileReader(realpath+"/signup.vm")로 <br>
+'\\' -> '/' 변경함으로 해결
+
 ## AWS
 ### AWS RDS의 mariaDB에서 select * from user;를 하면 table 'user' doesn't exist 에러가 난다 [2018-06-23]
 AWS RDS에서는 리눅스에 mariaDB를 설치해 주는데, 리눅스에서는 기본적으로 테이블 대소문자 구별을 한다. <br>
