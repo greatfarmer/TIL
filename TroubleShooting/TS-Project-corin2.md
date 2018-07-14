@@ -480,7 +480,15 @@ catalina.sh을 열어서 '#!/bin/sh' 바로 아래에 옵션 추가<br>
 <br>http://lng1982.tistory.com/261
 <br>http://mikelim.mintocean.com/entry/Ubuntu%EC%97%90%EC%84%9C-tomcat%EC%9D%B4-%EB%8A%90%EB%A6%AC%EA%B2%8C-%EB%A1%9C%EB%93%9C-%EB%90%A0-%EB%95%8C
 
+### AWS EC2 ubuntu에서 tomcat 구동 시 handler processing failed; nested exception is java.lang.outofmemoryerror: java heap space 에러 조치 [2018-07-04]
+JVM heap memory 용량 부족 에러: ubuntu의 톰캣 설정에서 메모리 설정을 변경<br>
+[해결 방법]<br>
+```sudo vi /usr/share/tomcat8/bin/catalina.sh```<br>
+catalina.sh을 열어서 '#!/bin/sh' 바로 아래에 옵션 추가<br>
+```JAVA_OPTS="$JAVA_OPTS -Xms256m -Xmx1024m -XX:MaxPermSize=128m"```
 
+> http://mycup.tistory.com/215
+<br>https://okky.kr/article/319932
 
 ## Firebase
 ### Java Admin SDK를 사용하여 Firebase의 Realtime Database에 데이터를 입력했을 때, 정상적으로 입력이 되지 않았던 문제 [2018-06-11]
