@@ -102,6 +102,11 @@ css에 아래 내용 추가 (원하는 요소::-webkit-scrollbar)
 ```
 > https://m.blog.naver.com/PostView.nhn?blogId=fageapp&logNo=220392875038&proxyReferer=https%3A%2F%2Fwww.google.co.kr%2F"a
 
+### 칸반보드가 포함된 페이지에서 채팅 입력 창에 마우스 커서가 나타나지 않는 문제 [2018-07-08]
+kanban.js에서 기능 하나하나 주석처리를 하면서 해당 부분을 찾아냄<br>
+kanban.js에서 onselectstart='return false' (블럭선택방지)를 주석처리하여 해결
+> http://hyunssssss.tistory.com/tag/onselectstart
+
 ## JavaScript
 ### JavaScript에서 함수의 범위 [2018-07-01]
 
@@ -489,6 +494,24 @@ catalina.sh을 열어서 '#!/bin/sh' 바로 아래에 옵션 추가<br>
 
 > http://mycup.tistory.com/215
 <br>https://okky.kr/article/319932
+
+### STS에서 Maven 배포 시 에러 [2018-07-06]
+#### 문제
+[ERROR] Failed to execute goal org.codehaus.mojo:tomcat-maven-plugin:1.1:deploy (default-cli) on project controller: Cannot invoke Tomcat manager: Connection refused: connect -> [Help 1]
+
+#### 해결
+ubuntu에서 아파치2, 톰캣8을 재시작 한 후 다시 진행 <br>
+```sudo service apache2 stop 후 start``` <br>
+```sudo service tomcat8 stop 후 start```
+
+
+### STS에서 Maven 배포 시 에러2 [2018-07-14]
+#### 문제
+[ERROR] Failed to execute goal org.codehaus.mojo:tomcat-maven-plugin:1.1:deploy (default-cli) on project controller: Cannot invoke Tomcat manager: FAIL - Deployed application at context path /corin2 but context failed to start -> [Help 1]
+
+#### 해결
+aws-ec2의 브랜치에서 master를 pull받으면서 src/main/resources/properties/s3Key.properties 파일이 삭제된 것이 문제가 되었다. <br>
+이런 상태에서 톰캣 run을 하니 404에러가 발생했었고, 이 파일을 다시 추가하니 메이븐 배포가 정상적으로 완료되었다.
 
 ## Firebase
 ### Java Admin SDK를 사용하여 Firebase의 Realtime Database에 데이터를 입력했을 때, 정상적으로 입력이 되지 않았던 문제 [2018-06-11]
