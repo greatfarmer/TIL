@@ -191,6 +191,26 @@ authorities-by-username-query="select userid, g.GRADENAME as ROLE_NAME from user
 컬럼 명을 신경 써서 mapping해주어야 한다.
 ```
 
+### pom.xml에 error가 난다면 [2018-06-11]
+#### 문제
+Multiple annotations found at this line: - <packaging>war</packaging> - web.xml is missing and <failOnMissingWebXml> is set to true
+
+#### 해결
+pom.xml의 plugins안에 아래 코드를 추가해준다.
+```xml
+<plugin>
+    <groupId>org.apache.maven.plugins</groupId>
+    <artifactId>maven-war-plugin</artifactId>
+    <version>2.4</version>
+    <configuration>
+        <warSourceDirectory>src/main/webapp</warSourceDirectory>
+            <warName>sample</warName>
+        <failOnMissingWebXml>false</failOnMissingWebXml>
+    </configuration>
+</plugin>
+```
+
+
 ### login.html 파일이 프로젝트 run시 불러지지 않는 문제 [2018-06-14]
 #### web.xml
 ```xml
