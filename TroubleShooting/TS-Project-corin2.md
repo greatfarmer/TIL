@@ -53,6 +53,39 @@ SELECT SUBSTRING_INDEX('admin@corin2.site', '@', -1)
 -- 결과 > corin2.site
 ```
 
+### 정해진 기간 안에 날짜 추가 [2018-06-25]
+#### 문제
+```
+정해진 기간 안에 날짜 추가
+예) select ... as days where `date` is between '2018-06-20' and '2018-06-24'
+
+days
+----------
+2018-06-20
+2018-06-21
+2018-06-22
+2018-06-23
+2018-06-24
+```
+#### 해결
+```sql
+select * from
+(select adddate('1970-01-01',t4*10000 + t3*1000 + t2*100 + t1*10 + t0) gen_date from
+ (select 0 t0 union select 1 union select 2 union select 3 union select 4 union select 5 union select 6 union select 7 union select 8 union select 9) t0,
+ (select 0 t1 union select 1 union select 2 union select 3 union select 4 union select 5 union select 6 union select 7 union select 8 union select 9) t1,
+ (select 0 t2 union select 1 union select 2 union select 3 union select 4 union select 5 union select 6 union select 7 union select 8 union select 9) t2,
+ (select 0 t3 union select 1 union select 2 union select 3 union select 4 union select 5 union select 6 union select 7 union select 8 union select 9) t3,
+ (select 0 t4 union select 1 union select 2 union select 3 union select 4 union select 5 union select 6 union select 7 union select 8 union select 9) t4) v
+where gen_date between '2018-06-20' and '2018-06-24';
+```
+> https://stackoverflow.com/questions/14105018/generating-a-series-of-dates
+<br>http://chan77xx.tistory.com/79
+
+### 오라클> nvl(칼럼명,0)을 mysql로 하면? [2018-06-25]
+```sql
+mysql> ifnull(칼럼명,0)
+```
+
 ## UI
 ### 헤더에서 드롭다운이 짤려 보이는 현상 [2018-06-19]
 css 속성에 ```overflow: hidden;```을 작성한 것이 문제였다.<br>
@@ -68,6 +101,11 @@ css에 아래 내용 추가 (원하는 요소::-webkit-scrollbar)
 }
 ```
 > https://m.blog.naver.com/PostView.nhn?blogId=fageapp&logNo=220392875038&proxyReferer=https%3A%2F%2Fwww.google.co.kr%2F"a
+
+### 칸반보드가 포함된 페이지에서 채팅 입력 창에 마우스 커서가 나타나지 않는 문제 [2018-07-08]
+kanban.js에서 기능 하나하나 주석처리를 하면서 해당 부분을 찾아냄<br>
+kanban.js에서 onselectstart='return false' (블럭선택방지)를 주석처리하여 해결
+> http://hyunssssss.tistory.com/tag/onselectstart
 
 ## JavaScript
 ### JavaScript에서 함수의 범위 [2018-07-01]
@@ -157,6 +195,25 @@ authorities-by-username-query="select userid, g.GRADENAME as ROLE_NAME from user
 현재 실행하는 페이지의 url과 같은 값으로 실행했더니 에러가 발생함<br>
 그래서 URL의 제일 마지막 부분이 중복이 안되게끔 servlet-context.xml과 URL을 바꾸어 준다.
 
+### pom.xml에 error가 난다면 [2018-06-11]
+#### 문제
+Multiple annotations found at this line: - <packaging>war</packaging> - web.xml is missing and <failOnMissingWebXml> is set to true
+
+#### 해결
+pom.xml의 plugins안에 아래 코드를 추가해준다.
+```xml
+<plugin>
+    <groupId>org.apache.maven.plugins</groupId>
+    <artifactId>maven-war-plugin</artifactId>
+    <version>2.4</version>
+    <configuration>
+        <warSourceDirectory>src/main/webapp</warSourceDirectory>
+            <warName>sample</warName>
+        <failOnMissingWebXml>false</failOnMissingWebXml>
+    </configuration>
+</plugin>
+```
+
 ### login.html 파일이 프로젝트 run시 불러지지 않는 문제 [2018-06-14]
 #### web.xml
 ```xml
@@ -203,6 +260,17 @@ site
 ```
 sudo cp corin2-20180623.war /usr/share/tomcat8/webapps
 ```
+
+### ubuntu에서 tomcat을 완전히 삭제 [2018-07-04]
+```
+> sudo apt-get purge --auto-remove tomcat8
+```
+> http://jdlab.tistory.com/305
+
+### [관리자 페이지] - [이메일 관리]에서 vm파일 불러오기가 되지않는 문제 [2018-07-04]
+윈도우 환경에서 new FileReader(realpath+"\\signup.vm")를 <br>
+우분투 환경에서 new FileReader(realpath+"/signup.vm")로 <br>
+'\\' -> '/' 변경함으로 해결
 
 ## AWS
 ### AWS RDS의 mariaDB에서 select * from user;를 하면 table 'user' doesn't exist 에러가 난다 [2018-06-23]
@@ -338,6 +406,38 @@ public class WebSocketConfig implements WebSocketConfigurer{
 <br>7. http://syaku.tistory.com/285
 <br>8.https://spring.io/guides/gs/rest-service-cors/
 
+### AWS EC2의 ubuntu에 STS에서 maven deploy 실행시 오류 [2018-06-26]
+#### 문제
+[ERROR] Failed to execute goal org.codehaus.mojo:tomcat-maven-plugin:1.1:deploy (default-cli) on project controller: Cannot invoke Tomcat manager: Error writing to server
+
+#### 해결
+ubuntu의 tomcat-users.xml에서 아래와 같이 수정해주어야 한다.
+```xml
+<tomcat-users>
+  <role rolename="manager-gui"/>
+  <role rolename="manager-script"/>
+  <role rolename="manager-status"/>
+  <user username="myManagerId" password="secretP^wd" roles="manager-gui,manager-script,manager-status"/>
+</tomcat-users>
+```
+
+### AWS EC2의 ubuntu에서 톰캣을 동작시켰고 로그인화면까지 왔다.
+하지만 로그인이 되지 않는다. [2018-06-26]
+#### 문제
+```
+http://ec2-52-6-111-163.compute-1.amazonaws.com:8090/corin2/login.html?error=9999
+```
+
+#### 해결
+AWS RDS에 AWS EC2의 IP를 허용해주지 않았던 문제. RDS의 보안그룹의 인바운드 규칙에 <br>
+예) 52.111.22.33/32로 해주었더니 해결되었다.
+>http://tbang.tistory.com/53
+<br>https://blog.naver.com/carrotcarrot/220671342353
+
+### AWS로 배포했을 때, 웹소켓이 동작하지않음 [2018-06-26]
+기존의 ws://localhost:8090/ 을 ws://AWS의 public ip주소:포트번호로 해주어야 동작 - 예)ws://13.125.73.16:8090/
+> http://myeonguni.tistory.com/1535
+
 ### AWS S3 Key 관리 [2018-06-30]
 #### 문제
 AWS S3 Key 보안을 위한 .properties 파일 사용법
@@ -388,6 +488,53 @@ public class PropertiesTest {
 
 #### 참고 (AWS EC2에서 IAM으로 Key 관리)
 > http://jojoldu.tistory.com/300
+
+### S3 access key를 github에 push하지 않아야 한다. [2018-07-04]
+실수로라도 S3 access key를 github에 push하면, AWS에서 해당 git repository를 찾은 후 보안상 이유로 계정을 블록하게 된다.<br>
+이렇게 되면, 고객센터에 메일을 보내서 계정 블록을 해제해야 하는 수고와 시간이 든다. 보안이 정말 중요하다.
+
+### AWS EC2 ubuntu에서 tomcat 구동 시 느릴 경우 조치 [2018-07-04]
+#### [첫번째 방법]
+```sudo vi /usr/share/tomcat8/bin/catalina.sh```<br>
+catalina.sh을 열어서 '#!/bin/sh' 바로 아래에 옵션 추가<br>
+```JAVA_OPTS="$JAVA_OPTS -Djava.security.egd=file:/dev/./urandom"```
+#### [두번째 방법]
+```cat /proc/sys/kernel/random/entropy_avail```<br>
+먼저 패키지를 설치하기 전에 다음 명령어를 통하여 현재 entropy를 확인한다.<br>
+결과치가 1000 이하일 경우 haveged를 설치할 것을 권장하고 있다.<br>
+```sudo apt-get install haveged```
+
+> http://www.hwangji.kr/sub/dev_leader/link/os/default.aspx?NHBBSID=NHBoardWebTip&NHBBSIDX=74
+<br>http://lng1982.tistory.com/261
+<br>http://mikelim.mintocean.com/entry/Ubuntu%EC%97%90%EC%84%9C-tomcat%EC%9D%B4-%EB%8A%90%EB%A6%AC%EA%B2%8C-%EB%A1%9C%EB%93%9C-%EB%90%A0-%EB%95%8C
+
+### AWS EC2 ubuntu에서 tomcat 구동 시 handler processing failed; nested exception is java.lang.outofmemoryerror: java heap space 에러 조치 [2018-07-04]
+JVM heap memory 용량 부족 에러: ubuntu의 톰캣 설정에서 메모리 설정을 변경<br>
+[해결 방법]<br>
+```sudo vi /usr/share/tomcat8/bin/catalina.sh```<br>
+catalina.sh을 열어서 '#!/bin/sh' 바로 아래에 옵션 추가<br>
+```JAVA_OPTS="$JAVA_OPTS -Xms256m -Xmx1024m -XX:MaxPermSize=128m"```
+
+> http://mycup.tistory.com/215
+<br>https://okky.kr/article/319932
+
+### STS에서 Maven 배포 시 에러 [2018-07-06]
+#### 문제
+[ERROR] Failed to execute goal org.codehaus.mojo:tomcat-maven-plugin:1.1:deploy (default-cli) on project controller: Cannot invoke Tomcat manager: Connection refused: connect -> [Help 1]
+
+#### 해결
+ubuntu에서 아파치2, 톰캣8을 재시작 한 후 다시 진행 <br>
+```sudo service apache2 stop 후 start``` <br>
+```sudo service tomcat8 stop 후 start```
+
+
+### STS에서 Maven 배포 시 에러2 [2018-07-14]
+#### 문제
+[ERROR] Failed to execute goal org.codehaus.mojo:tomcat-maven-plugin:1.1:deploy (default-cli) on project controller: Cannot invoke Tomcat manager: FAIL - Deployed application at context path /corin2 but context failed to start -> [Help 1]
+
+#### 해결
+aws-ec2의 브랜치에서 master를 pull받으면서 src/main/resources/properties/s3Key.properties 파일이 삭제된 것이 문제가 되었다. <br>
+이런 상태에서 톰캣 run을 하니 404에러가 발생했었고, 이 파일을 다시 추가하니 메이븐 배포가 정상적으로 완료되었다.
 
 ## Firebase
 ### Java Admin SDK를 사용하여 Firebase의 Realtime Database에 데이터를 입력했을 때, 정상적으로 입력이 되지 않았던 문제 [2018-06-11]
