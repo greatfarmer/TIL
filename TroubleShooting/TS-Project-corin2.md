@@ -153,6 +153,10 @@ authorities-by-username-query="select userid, g.GRADENAME as ROLE_NAME from user
 컬럼 명을 신경 써서 mapping해주어야 한다.
 ```
 
+### 소켓통신을 할때 지정하는 url 매핑에서 200error 발생시 해결하는 법 [2018-06-11]
+현재 실행하는 페이지의 url과 같은 값으로 실행했더니 에러가 발생함<br>
+그래서 URL의 제일 마지막 부분이 중복이 안되게끔 servlet-context.xml과 URL을 바꾸어 준다.
+
 ### login.html 파일이 프로젝트 run시 불러지지 않는 문제 [2018-06-14]
 #### web.xml
 ```xml
