@@ -1,5 +1,6 @@
 # Collection - ArrayList
 
+## # 1
 ```java
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -89,6 +90,109 @@ public class Ex02_ArrayList {
 		Collections.sort(alist);
 
 		System.out.println("after: " + alist.toString());
+	}
+}
+```
+
+## # 2
+### Emp.java
+```java
+package kr.or.bit;
+
+public class Emp {
+	private int empno;
+	private String ename;
+	private String job;
+
+	public Emp(int empno, String ename, String job) {
+		this.empno = empno;
+		this.ename = ename;
+		this.job = job;
+	}
+
+	public int getEmpno() {
+		return empno;
+	}
+
+	public void setEmpno(int empno) {
+		this.empno = empno;
+	}
+
+	public String getEname() {
+		return ename;
+	}
+
+	public void setEname(String ename) {
+		this.ename = ename;
+	}
+
+	public String getJob() {
+		return job;
+	}
+
+	public void setJob(String job) {
+		this.job = job;
+	}
+
+	@Override
+	public String toString() {
+		return "Emp [empno=" + empno + ", ename=" + ename + ", job=" + job + "]";
+	}
+}
+```
+
+### Ex03_ArrayList_Object_KeyPoint.java
+```java
+import java.util.ArrayList;
+
+import kr.or.bit.Emp;
+
+public class Ex03_ArrayList_Object_KeyPoint {
+	public static void main(String[] args) {
+		//정적배열(Array)
+		//사원 1명을 만드세요
+		Emp e = new Emp(100, "김유신", "군인");
+		System.out.println(e.toString());
+
+		//정적배열(Array) 사용
+		//사원 2명 만드세요
+		Emp[] emplist = {new Emp(10, "김씨", "IT"), new Emp(20, "박씨", "SALES")};
+
+		for(Emp em : emplist) {
+			System.out.println(em.toString());
+		}
+
+		//ArrayList를 사용해서 사원 2명을 만드세요
+		ArrayList elist = new ArrayList();
+
+		elist.add(new Emp(1,"김","IT"));
+		elist.add(new Emp(2,"박","영업"));
+
+		System.out.println(elist.toString());
+
+		//for문 사용해서 사원 데이터 정보 출력
+		for(int i = 0; i < elist.size(); i++) {
+			//System.out.println(elist.get(i).toString());
+			//System.out.println(((Emp)elist.get(i)).toString());
+			Emp m = (Emp)elist.get(i);
+			System.out.println(m.getEmpno() + " / " + m.getEname() + " / " + m.getJob());
+		}
+
+		//개선된 for문
+		for(Object obj : elist) {
+			Emp m = (Emp)obj;
+			System.out.println(m.getEmpno());
+		}
+
+		//Object 불편 -> 실제 사용은 제너릭(generic)
+		//generic
+		ArrayList<Emp> elist2 = new ArrayList<Emp>();
+		elist2.add(new Emp(1, "A", "IT"));
+		elist2.add(new Emp(2, "B", "SALES"));
+
+		for(Emp em : elist2) {
+			System.out.println(em.getEmpno() + "/" + em.getEname() + "/" + em.getJob());
+		}
 	}
 }
 ```
