@@ -191,3 +191,85 @@ public class Main {
 	}
 }
 ```
+
+## Java #3 (2018-08-05)
+#3 코드는 #1, #2 코드와 달리 배열을 사용하지 않고 Node Class를 사용해 구현
+```java
+import java.util.Scanner;
+
+class Stack {
+	class Node {
+		private int data;
+		private Node next;
+
+		public Node(int data) {
+			this.data = data;
+		}
+	}
+
+	private Node top;
+	private int cnt = 0;
+
+	public int pop() {
+		if(top == null) {
+			return -1;
+		}
+
+		cnt--;
+		int item = top.data;
+		top = top.next;
+		return item;
+	}
+
+	public void push(int item) {
+		Node t = new Node(item);
+		t.next = top;
+		top = t;
+		cnt++;
+	}
+
+	public int top() {
+		if(top == null) {
+			return -1;
+		}
+		return top.data;
+	}
+
+	public int size() {
+		return cnt;
+	}
+
+	public int empty() {
+		return (top == null) ? 1 : 0;
+	}
+}
+
+public class Main {
+	public static void main(String[] args) {
+		Scanner sc = new Scanner(System.in);
+		int initNum = Integer.parseInt(sc.nextLine());
+		Stack s = new Stack();
+
+		int i = 0;
+		while(i < initNum) {
+			String input = sc.nextLine();
+			if(input.contains("push")) {
+				int x = Integer.parseInt(input.substring(5));
+				s.push(x);
+			}else if(input.contains("pop")) {
+				System.out.println(s.pop());
+			}else if(input.contains("size")) {
+				System.out.println(s.size());
+			}else if(input.contains("empty")) {
+				System.out.println(s.empty());
+			}else if(input.contains("top")) {
+				System.out.println(s.top());
+			}else {
+				continue;
+			}
+
+			i++;
+		}
+	}
+}
+```
