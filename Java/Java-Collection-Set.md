@@ -81,8 +81,7 @@ public class Ex10_Set_Interface {
 			System.out.println(s.next());
 		} //순서 (add한 순서) 보장 하지 않는다 (배열이 아니므로)
 
-		//Collections.sort(list);
-    //List 인터페이스 구현한 객체는 여기에 올 수 있다.
+		//Collections.sort(list); //List 인터페이스 구현한 객체는 여기에 올 수 있다.
 		//Collections.reverse(List<T> li);
 
 		//Set 인터페이스 구현 자원: sort 의미 없다
