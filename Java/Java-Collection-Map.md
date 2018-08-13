@@ -11,6 +11,7 @@ ex) 지역번호: 02, 서울<br>
 
 현재 의미 없다 (동기화) >> 현재 단일 Process에 단일 Thread >> stack 하나만 가지고 >> Sequential
 
+## 예제
 ```java
 import java.util.Collection;
 import java.util.HashMap;
@@ -61,6 +62,57 @@ public class Ex12_Map_HashMap {
 		//map.values();
 		Collection vlist = map.values();
 		System.out.println(vlist.toString());
+	}
+}
+```
+
+## Quiz
+```
+시스템에 로그인 하는 시나리오
+ID(o), PWD(o) >> 회원 (환영)
+ID(o), PWD(x) >> 실패 (비번 다시 입력)
+
+ID(x), PWD(x) >> 실패 (다시 입력)
+ID(x), PWD(o)
+
+Scanner 사용해서 ID, PWD 입력받으세요
+loginmap 통해서 검증 로직 처리
+ID 또는 PWD 틀리면 다시 입력 요청
+ID, PWD 다 맞으면 회원님 방문 환영합니다 (출력 프로그램 종료)
+```
+```java
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.Scanner;
+import java.util.Set;
+
+public class Ex13_HashMap_Quiz {
+	public static void main(String[] args) {
+		HashMap loginmap = new HashMap();
+		loginmap.put("kim", "kim1004");
+		loginmap.put("scott", "tiger");
+		loginmap.put("lee", "kim1004");
+
+		Scanner sc = new Scanner(System.in);
+		while(true) {
+			System.out.println("ID , PWD 입력해 주세요");
+			System.out.print("ID:");
+			String id = sc.nextLine().trim().toLowerCase();
+
+			System.out.print("PWD:");
+			String pwd = sc.nextLine().trim();
+
+			if(!loginmap.containsKey(id)) {
+				System.out.println("ID 틀려요 재입력 하세요");
+			}else {
+				if(loginmap.get(id).equals(pwd)) { //loginmap.get(id) >> value return
+					System.out.println("회원님 방가방가 ^^");
+					break;
+				}else {
+					System.out.println("비번 확인 하세요");
+				}
+			}
+		}
 	}
 }
 ```
