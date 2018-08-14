@@ -7,6 +7,12 @@
 ## JavaScript
 - 자바스크립트 반응형에 대한 좋은 설명
   > http://devtimothy.tistory.com/87
+- this
+  > https://poiemaweb.com/js-this
+
+## ECMASciprt6
+- Arrow function
+  > https://poiemaweb.com/es6-arrow-function
 
 ## React
 - 누구든지 하는 리액트
