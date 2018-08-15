@@ -1,9 +1,7 @@
 # Spring 프로젝트의 AWS 설정
 
-## 태웅이가 정리한 자료
-```
-data/AWS 발표자료.pptx
-```
+## 코린이 프로젝트를 통해 정리한 자료
+> [AWS설정_코린이.pdf](https://drive.google.com/file/d/1s3v6_cnap9ZP_5FbNoIn2uL7OVdZZZKg/view?usp=sharing)
 
 ## EC2 생성 및 설정
 > http://jojoldu.tistory.com/259
