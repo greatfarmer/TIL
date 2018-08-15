@@ -1,6 +1,6 @@
 # LifeCycle API
 ![react-component-lifecycle](images/react-component-lifecycle.jpg)
-> 그림 출처: [Understanding React component life-cycle](https://code.likeagirl.io/understanding-react-component-life-cycle-49bf4b8674de)
+> 그림 출처: [Understanding React component life-cycle (React 16.3)](https://code.likeagirl.io/understanding-react-component-life-cycle-49bf4b8674de)
 
 ## 마운트
 - ```constructor``` 컴포넌트를 새로 만들 때마다 호출되는 클래스 생성자 메서드
