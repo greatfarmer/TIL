@@ -11,6 +11,10 @@
   > https://poiemaweb.com/js-this
 - 자바스크립트 비동기 처리와 콜백 함수
   > https://joshua1988.github.io/web-development/javascript/javascript-asynchronous-operation/
+- Top JavaScript VSCode Extensions for Faster Development
+  > https://codeburst.io/top-javascript-vscode-extensions-for-faster-development-c687c39596f5
+- Front-end development tools cleaned up
+  > https://blog.naver.com/backsajang420/221339044797
 
 ## ECMASciprt6
 - Arrow function
