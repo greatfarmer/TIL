@@ -10,6 +10,10 @@
 - GET과 POST 차이
   > https://blog.outsider.ne.kr/312
 
+## CSS
+- Sass Guidelines
+  > https://sass-guidelin.es/ko/
+
 ## JavaScript
 - 자바스크립트 반응형에 대한 좋은 설명
   > http://devtimothy.tistory.com/87
