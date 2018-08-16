@@ -9,6 +9,8 @@
   > http://devtimothy.tistory.com/87
 - this
   > https://poiemaweb.com/js-this
+- 자바스크립트 비동기 처리와 콜백 함수
+  > https://joshua1988.github.io/web-development/javascript/javascript-asynchronous-operation/
 
 ## ECMASciprt6
 - Arrow function
