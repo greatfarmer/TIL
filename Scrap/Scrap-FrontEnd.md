@@ -7,6 +7,8 @@
   > https://blog.naver.com/backsajang420/221339044797
 - RESTFul이란 무엇인가?
   > http://blog.remotty.com/blog/2014/01/28/lets-study-rest/
+- GET과 POST 차이
+  > https://blog.outsider.ne.kr/312
 
 ## JavaScript
 - 자바스크립트 반응형에 대한 좋은 설명
