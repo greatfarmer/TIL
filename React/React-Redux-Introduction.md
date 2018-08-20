@@ -1,6 +1,7 @@
 # Redux - Introduction
 > VELOPERT, 리액트를 다루는 기술, 길벗, 2018. <br>
-[Official site] https://redux.js.org/
+[Official site] https://redux.js.org/ <br>
+[한글번역] https://deminoth.github.io/redux/
 
 ## Without Redux vs With Redux
 ![redux-introduction](images/redux-introduction.svg)
