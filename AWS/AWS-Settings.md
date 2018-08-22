@@ -19,3 +19,6 @@
 > [당신이 AWS 계정을 만들고 가장 먼저 해야 할 일 들과 하지 말아야 할 일 들](http://www.awskr.org/2017/01/your-aws-first-days-todo-list/)
 
 > [[AWS] 예상 청구요금 알림 받는 방법](http://gun0912.tistory.com/11)
+
+## 문제해결
+> [EC2 KeyPair 분실 시 해결방법](https://docs.aws.amazon.com/ko_kr/AWSEC2/latest/UserGuide/ec2-key-pairs.html#replacing-lost-key-pair)
