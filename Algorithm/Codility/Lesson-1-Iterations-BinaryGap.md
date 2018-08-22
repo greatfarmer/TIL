@@ -1,4 +1,5 @@
-# Lesson 1: Binary Gap
+# Lesson 1: Iterations - Binary Gap
+> https://app.codility.com/programmers/lessons/1-iterations/
 
 ## Task description
 A binary gap within a positive integer N is any maximal sequence of consecutive zeros that is surrounded by ones at both ends in the binary representation of N.
