@@ -29,4 +29,9 @@
 - [Immutable.js](https://facebook.github.io/immutable-js/)
 - [Ducks](https://github.com/erikras/ducks-modular-redux)
 - [redux-actions](https://redux-actions.js.org/)
-- [redux-logger](https://github.com/evgenyrodionov/redux-logger)
+
+## Redux middleware
+- [redux-logger](https://github.com/evgenyrodionov/redux-logger) | Logger for Redux
+- [redux-thunk](https://github.com/reduxjs/redux-thunk) | Thunk middleware for Redux (async)
+- [redux-promise-middleware](https://docs.psb.codes/redux-promise-middleware/) | Enables simple, yet robust handling of async action creators in Redux (async)
+- [redux-pender](https://github.com/velopert/redux-pender) | Redux middleware that helps to manages async actions based on promise (async)
