@@ -29,3 +29,4 @@
 - [Immutable.js](https://facebook.github.io/immutable-js/)
 - [Ducks](https://github.com/erikras/ducks-modular-redux)
 - [redux-actions](https://redux-actions.js.org/)
+- [redux-logger](https://github.com/evgenyrodionov/redux-logger)
