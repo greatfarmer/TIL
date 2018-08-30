@@ -7,3 +7,6 @@ A browser automation framework and ecosystem.
 - [Selenium을 이용하여 스프링(Spring) Test하기](https://nesoy.github.io/articles/2017-03/Selenium)
 - [Selenium IDE (Chrome Extension) 사용하기](http://dejavuqa.tistory.com/194)
 - [Hudson과 Selenium을 이용한 테스트 자동화](https://d2.naver.com/helloworld/87523)
+
+## Similar tools
+- [Puppeteer](https://pptr.dev/) | Headless Chrome Node API
