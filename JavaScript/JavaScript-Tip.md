@@ -7,3 +7,6 @@ function getRandomColor() {
   // 16777215 -> (hex) -> FFFFFF
 }
 ```
+
+## keyboard events: keyCode
+  - http://noritersand.tistory.com/224
