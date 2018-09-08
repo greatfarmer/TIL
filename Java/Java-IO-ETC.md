@@ -161,3 +161,125 @@ public class Ex14_DataInputStream {
 	}
 }
 ```
+
+## ObjectOutputStream, ObjectInputStream
+### UserInfo.java
+```java
+package kr.or.bit;
+
+import java.io.Serializable;
+
+//객체 통신
+//객체를 네트워크, 파일간에, 프로세스간에 통신
+//직렬화 (객체를 분해해서 줄을 세워 보내는 과정)
+//역직렬화 (객체를 조립하는 과정)
+
+//실습
+//대상 >> 파일 >> 객체 write(직렬화)
+//대상 >> 파일 >> 객체 read(역직렬화)
+
+//조건: implements Serializable 클래스만 직렬화 가능
+
+public class UserInfo implements Serializable {
+	public String name;
+	public String pwd;
+	public int age;
+
+	public UserInfo() {}
+	public UserInfo(String name, String pwd, int age) {
+		this.name = name;
+		this.pwd = pwd;
+		this.age = age;
+	}
+	@Override
+	public String toString() {
+		return "UserInfo [name=" + name + ", pwd=" + pwd + ", age=" + age + "]";
+	}
+}
+```
+
+### ObjectOutputStream
+```java
+import java.io.BufferedOutputStream;
+import java.io.FileOutputStream;
+import java.io.ObjectOutputStream;
+
+import kr.or.bit.UserInfo;
+
+//객체를 파일에 write
+public class Ex15_ObjectDataOutPutStream {
+	public static void main(String[] args) {
+		String filename = "UserData.txt";
+		try {
+			FileOutputStream fos = new FileOutputStream(filename);
+			BufferedOutputStream bos = new BufferedOutputStream(fos);
+
+			//객체 (직렬화)
+			//write (객체 단위로)
+			ObjectOutputStream out = new ObjectOutputStream(bos);
+			UserInfo u1 = new UserInfo("superman", "super", 500);
+			UserInfo u2 = new UserInfo("scott", "tiger", 50);
+
+			//직렬화
+			out.writeObject(u1);
+			out.writeObject(u2);
+
+			out.close();
+			bos.close();
+			fos.close();
+			System.out.println("파일생성 -> buffer -> 직렬화객체 -> write");
+		}catch(Exception e) {
+			System.out.println(e.getMessage());
+		}
+	}
+}
+```
+
+## ObjectInputStream
+```java
+import java.io.BufferedInputStream;
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+
+import kr.or.bit.UserInfo;
+
+//UserData.txt 파일에서 직렬화된 객체를 read (역직렬화) 다시 조립
+
+public class Ex16_ObjectDataInPutStream {
+	public static void main(String[] args) {
+		String filename = "UserData.txt";
+		FileInputStream fis = null;
+		BufferedInputStream bis = null;
+		ObjectInputStream in = null;
+
+		try {
+			fis = new FileInputStream(filename);
+			bis = new BufferedInputStream(fis);
+			in = new ObjectInputStream(bis);
+
+			//UserInfo r1 = (UserInfo)in.readObject(); //역직렬화: 복원
+			//UserInfo r2 = (UserInfo)in.readObject(); //역직렬화: 복원
+
+			//System.out.println(r1.toString());
+			//System.out.println(r2.toString());
+
+			//객체 단의 read 객체가 없으면 null 값 반환
+			Object users = null;
+			while((users = in.readObject()) != null) {
+				System.out.println(users);
+			}
+		}catch (Exception e) {
+			System.out.println(e.getMessage());
+		}finally {
+			try {
+				in.close();
+				bis.close();
+				fis.close();
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		}
+	}
+}
+```
