@@ -5,3 +5,4 @@
 - [Octotree](https://chrome.google.com/webstore/detail/octotree/bkhaagjahfmjljalopjnoealnfndnagc) | Code tree for GitHub
 - [Robo 3T](https://robomongo.org/) | Native cross-platform MongoDB management tool
 - [Postman](https://www.getpostman.com/) | API Development Environment
+- [Fiddler](https://www.telerik.com/fiddler) | Web Debugging Tool
