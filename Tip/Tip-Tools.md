@@ -6,3 +6,4 @@
 - [Robo 3T](https://robomongo.org/) | Native cross-platform MongoDB management tool
 - [Postman](https://www.getpostman.com/) | API Development Environment
 - [Fiddler](https://www.telerik.com/fiddler) | Web Debugging Tool
+- [BareTail](https://www.baremetalsoft.com/baretail/) | A free real-time log file monitoring tool
