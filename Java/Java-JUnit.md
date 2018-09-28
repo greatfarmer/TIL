@@ -67,6 +67,13 @@ public class FoobarTest {
 - 변경이 쉽다
 - 통합이 간단하다
 
+## 주의사항
+- JUnit을 사용할 때, Main함수에는 @Test 어노테이션이 먹히지 않는다
+- java.lang.Exception: Method parsePageNumber() should be public
+  - method는 public이어야 한다
+- java.lang.Exception: Method parsePageNumber should have no parameters
+  - method에 파라미터가 없어야 한다
+
 ## References
 - [Official site](https://junit.org/junit5/)
 - [새내기 개발자의 JUnit 여행기](http://www.nextree.co.kr/p11104/)
