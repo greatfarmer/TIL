@@ -91,6 +91,13 @@ public class RegexTest {
 }
 ```
 
-## 참고 사이트
+## References
 - [Online regex tester, debugger with highlighting for PHP, PCRE, Python, Golang and JavaScript.](https://regex101.com/)
 - [정규표현식을 소개합니다](http://www.nextree.co.kr/p4327/)
+- [정규표현식 (좀 더) 깊이 알아보기](https://medium.com/@originerd/%EC%A0%95%EA%B7%9C%ED%91%9C%ED%98%84%EC%8B%9D-%EC%A2%80-%EB%8D%94-%EA%B9%8A%EC%9D%B4-%EC%95%8C%EC%95%84%EB%B3%B4%EA%B8%B0-5bd16027e1e0)
+- [쉽고 재밌는 정규식 이야기](http://woowabros.github.io/study/2016/08/16/easy_and_fun_reg_exp.html)
+
+## FlashText
+#### Extract Keywords from sentence or Replace keywords in sentences
+- [FlashText](https://github.com/vi3k6i5/flashtext)
+- [[번역]정규표현식으로는 5일 걸리는 작업, 15분만에 끝내기](https://medium.com/@jwyeom63/%EB%B2%88%EC%97%AD-%EC%A0%95%EA%B7%9C%ED%91%9C%ED%98%84%EC%8B%9D%EC%9C%BC%EB%A1%9C-5%EC%9D%BC-%EA%B1%B8%EB%A6%AC%EB%8A%94-%EC%9E%91%EC%97%85-15%EB%B6%84%EB%A7%8C%EC%97%90-%EB%81%9D%EB%82%B4%EA%B8%B0-2e615a907048)
