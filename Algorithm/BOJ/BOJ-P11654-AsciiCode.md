@@ -20,8 +20,13 @@ a / 97
 z / 122
 ```
 
-## Java (2018-09-30)
+## Java
+### Ver 1: InputStreamReader, BufferedReader 사용 (2018-09-30)
 ```java
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+
 public class P11654_AsciiCode {
 	public static void main(String[] args) throws IOException {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
@@ -31,6 +36,24 @@ public class P11654_AsciiCode {
 		char ch = input.charAt(0);
 
 		System.out.println((int)ch);
+	}
+}
+```
+
+### Ver 2: InputStreamReader만 사용 (2018-09-30)
+- InputStreamReader의 read()메서드는 char을 하나 읽어 int(ascii코드)로 리턴
+- int java.io.InputStreamReader.read() throws IOException
+	- Reads a single character.
+	- Returns: The character read, or -1 if the end of the stream has been reached.
+
+```java
+import java.io.IOException;
+import java.io.InputStreamReader;
+
+public class P11654_AsciiCode {
+	public static void main(String[] args) throws IOException {
+		InputStreamReader isr = new InputStreamReader(System.in);
+		System.out.println(isr.read());
 	}
 }
 ```
