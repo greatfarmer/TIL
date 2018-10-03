@@ -39,7 +39,7 @@ class Alphabet {
 		return map;
 	}
 
-	public void getCharLocation(String s) {
+	public String getCharLocation(String s) {
 		Map<Integer, Integer> resultMap = getAlphabetMap();
 
 		for (int i = 0; i < s.length(); i++) {
@@ -49,10 +49,11 @@ class Alphabet {
 			resultMap.replace(asciiNum, i);
 		}
 
-		// map의 value 출력
+		// map의 value
 		Collection resultValues = resultMap.values();
 		String result = resultValues.toString().replace("[", "").replace(",", "").replace("]", "");
-		System.out.println(result);
+
+		return result;
 	}
 }
 
@@ -63,7 +64,7 @@ public class P10809_SearchAlphabet {
 
 		if (s.length() == 0 || s.length() > 100) return; // 단어의 길이는 100 이하
 		Alphabet alphabet = new Alphabet();
-		alphabet.getCharLocation(s);
+		System.out.println(alphabet.getCharLocation(s));
 	}
 }
 ```
