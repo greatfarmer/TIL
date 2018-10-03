@@ -1,0 +1,26 @@
+# 업체별 기술 블로그 리스트
+
+## 국내
+- [NAVER D2](http://d2.naver.com/home)
+- [kakao 기술 블로그](http://tech.kakao.com)
+- [우아한형제들 기술 블로그](http://woowabros.github.io/)
+- [쿠팡 기술 블로그](https://medium.com/coupang-tech)
+- [티몬의 개발 이야기](https://tmondev.blog.me/)
+- [SK플래닛 기술 블로그](https://readme.skplanet.com/)
+- [Spoqa 기술 블로그](https://spoqa.github.io/)
+- [레진 기술 블로그](https://tech.lezhin.com/)
+- [피플펀드 기술 블로그](https://tech.peoplefund.co.kr/)
+- [LINE Enginnering Blog](https://engineering.linecorp.com/ko/blog)
+- [BSIDESOFT co.](http://www.bsidesoft.com/)
+- [DAILYHOTEL](https://dailyhotel.io/)
+
+## 국외
+- [Google Developers](https://developers.googleblog.com/)
+- [facebook for developers](https://developers.facebook.com/blog/)
+- [THE NETFLIX TECH BLOG](https://medium.com/netflix-techblog)
+- [Airbnb](https://medium.com/airbnb-engineering)
+- [Grab Tech Blog](https://engineering.grab.com/)
+- [RIOT GAMES ENGINEERING](https://engineering.riotgames.com/)
+- [zeit](https://zeit.co/blog)
+- [kloud](https://blog.kloud.com.au/)
+- [Mexia Blog](https://blog.mexia.com.au/)
