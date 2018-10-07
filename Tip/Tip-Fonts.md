@@ -11,3 +11,6 @@
 
 - tvN '즐거운 이야기체'
   > http://tvn10festival.tving.com/playground/tvn10font
+
+- 네이버 D2 Coding
+ > https://github.com/naver/d2codingfont
