@@ -9,3 +9,4 @@
 - [BareTail](https://www.baremetalsoft.com/baretail/) | A free real-time log file monitoring tool
 - [FileZilla](https://filezilla-project.org/) | The free FTP solution
 - [Docute](https://docute.org) | The fastest way to create a documentation site for your project
+- [Speaker Deck](https://speakerdeck.com/) | Share presentations online.
