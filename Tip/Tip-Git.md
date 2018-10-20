@@ -1,5 +1,8 @@
 # Git
 
+## 깃을 위한 flight rules
+- https://github.com/k88hudson/git-flight-rules/blob/master/README_kr.md
+
 ## 자주 사용하는 깃 명령어 모음
 - https://github.com/jeonghwan-kim/git-usage
 
