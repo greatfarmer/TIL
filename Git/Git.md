@@ -12,14 +12,14 @@
 - https://djkeh.github.io/articles/How-to-write-a-git-commit-message-kor/
 
 ## gitignore
-- [Tip-Git-gitignore](Tip-Git-gitignore.md)
+- [gitignore](Git-gitignore.md)
 
 ## GitHub language colors
-- [Tip-GiHub-Colors](Tip-GitHub-Colors.md)
+- [GiHub-Colors](Git-GitHub-Colors.md)
 
 ## Trouble Shooting 바로가기
-- [Sourcetree에서 User information 내용을 변경해도 새 Repository에서 적용이 되지 않을 경우](#Sourcetree에서 User information 내용을 변경해도 새 Repository에서 적용이 되지 않을 경우)
-- [리모트 저장소에 푸시한 커밋을 리베이스했을 경우](#리모트 저장소에 푸시한 커밋을 리베이스했을 경우)
+- [Sourcetree에서 User information 내용을 변경해도 새 Repository에서 적용이 되지 않을 경우](#sourcetree에서-user-information-내용을-변경해도-새-repository에서-적용이-되지-않을-경우)
+- [리모트 저장소에 푸시한 커밋을 리베이스했을 경우](#리모트-저장소에-푸시한-커밋을-리베이스했을-경우)
 
 
 ## Trouble Shooting
@@ -33,12 +33,12 @@
   - (같이보기) https://git-scm.com/book/ko/v1/시작하기-Git-최초-설정
 
 ### 리모트 저장소에 푸시한 커밋을 리베이스했을 경우
-- (경고) 기본적으로 **리모트 저장소에 푸시한 커밋은 리베이스하지 말 것**
+- **(경고)** 기본적으로 **리모트 저장소에 푸시한 커밋은 리베이스하지 말 것**
   - https://djkeh.github.io/articles/Do-not-rebase-commits-that-you-have-pushed-to-a-public-repository-kor/
 - 하지만, 이미 실수를 해버렸을 경우에 대한 내용이다
 - 상황
   - 리모트 저장소 `master` 브랜치의 커밋 중 하나를 삭제하고 싶었다
-  - `master` 브랜치에서 Interactive Rebase `git rebase -i <커밋 해시값>``를 통해 삭제하고 싶은 커밋을 drop 했다 (**핵심적인 실수**)
+  - `master` 브랜치에서 Interactive Rebase `git rebase -i <커밋 해시값>``를 통해 삭제하고 싶은 커밋을 drop 했다 **(핵심적인 실수)**
     - [Git rebase를 이용한 커밋 수정 (Interactive Rebase)](https://wckhg89.github.io/archivers/rebase)
   -  하지만, **기존 커밋이 중복**되는 결과가 나왔다
   ![git-rebase-problem](images/git-rebase-problem/git-rebase-problem.png)
@@ -46,7 +46,7 @@
   - **새 브랜치를 만들어 다시 Interactive Rebase 실행**
   - `dev`라는 브랜치를 만들고 이 브랜치로 checkout함
   - Sourcetree - Terminal (Git Bash)에서 `git rebase -i 7c36480`(7c36480은 Initial commit의 커밋번호) 실행
-    - 해당 작업의 [Git Base Log](data/git-rebase-log.docx)
+    - 해당 작업의 [Git Bash Log](data/git-rebase-log.docx)
   - `nothing to commit, working tree clean` 메시지
     - `git rebase --skip`
     ![git-rebase-skip](images/git-rebase-problem/git-rebase-skip.png)
