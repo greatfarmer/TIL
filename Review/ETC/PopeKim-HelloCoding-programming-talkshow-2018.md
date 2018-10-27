@@ -162,24 +162,24 @@
     - 최신 기술을 이용한 동기 및 승부욕 부여
     - 19년 1월 첫학기 시작 예정 (Proof of Concept University: https://pocu.academy)
 
-  - 관련 포프TV 에피소드들
-    - [생활습관을 고쳐야 좋은 엔지니어가 된다](https://www.youtube.com/watch?v=PCkFeHJxJn4)
-    - [A급 B급 인재](https://www.youtube.com/watch?v=V5N19Plazfk)
-    - [개발경력 3년이면](https://www.youtube.com/watch?v=ie2epvAsAGE)
-    - [코드몽키의 미래](https://www.youtube.com/watch?v=aLyi0SkuKmY)
-    - [스터디 절대로 하지마라](https://www.youtube.com/watch?v=4ZcNL96NMIk)
-    - 야근과 자기발전 [1](https://www.youtube.com/watch?v=UlqNxG95CRE), [2](https://www.youtube.com/watch?v=eEI5iwI0H0c)
-    - [야근에 대해 말해보자](https://www.youtube.com/watch?v=XBHS9r-z80U)
-    - [라이프스타일과 야근](https://www.youtube.com/watch?v=sPN9cEI3QNc)
-    - [수재는 천재를 이길 수 있다](https://www.youtube.com/watch?v=vwV3a5o3IwI)
-  
-  - 정리
-    - 세상은 원래부터 알고리즘에 의해 돈다
-    - 컴퓨터는 세상을 빠르고 효율적으로 돌려준다
-    - 남이 만든 프로그래밍을 돌리기만 하는 시대는 끝났다
-    - 프로그래머가 아니더라도 프로그래밍을 이용할 곳은 많다
-    - 프로그래머가 직업이라고 다 편하게 살지 못한다
-    - 프로그래머가 직업이라면 컴퓨터와 훌륭한 부부생활(?)을 하자
+- 관련 포프TV 에피소드들
+  - [생활습관을 고쳐야 좋은 엔지니어가 된다](https://www.youtube.com/watch?v=PCkFeHJxJn4)
+  - [A급 B급 인재](https://www.youtube.com/watch?v=V5N19Plazfk)
+  - [개발경력 3년이면](https://www.youtube.com/watch?v=ie2epvAsAGE)
+  - [코드몽키의 미래](https://www.youtube.com/watch?v=aLyi0SkuKmY)
+  - [스터디 절대로 하지마라](https://www.youtube.com/watch?v=4ZcNL96NMIk)
+  - 야근과 자기발전 [1](https://www.youtube.com/watch?v=UlqNxG95CRE), [2](https://www.youtube.com/watch?v=eEI5iwI0H0c)
+  - [야근에 대해 말해보자](https://www.youtube.com/watch?v=XBHS9r-z80U)
+  - [라이프스타일과 야근](https://www.youtube.com/watch?v=sPN9cEI3QNc)
+  - [수재는 천재를 이길 수 있다](https://www.youtube.com/watch?v=vwV3a5o3IwI)
+
+- 정리
+  - 세상은 원래부터 알고리즘에 의해 돈다
+  - 컴퓨터는 세상을 빠르고 효율적으로 돌려준다
+  - 남이 만든 프로그래밍을 돌리기만 하는 시대는 끝났다
+  - 프로그래머가 아니더라도 프로그래밍을 이용할 곳은 많다
+  - 프로그래머가 직업이라고 다 편하게 살지 못한다
+  - 프로그래머가 직업이라면 컴퓨터와 훌륭한 부부생활(?)을 하자
 
 ## 질문
 - 어떤 경로로 동기부여를 받으시는지?
