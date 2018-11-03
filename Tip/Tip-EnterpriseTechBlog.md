@@ -13,6 +13,7 @@
 - [LINE Enginnering Blog](https://engineering.linecorp.com/ko/blog)
 - [BSIDESOFT co.](http://www.bsidesoft.com/)
 - [DAILYHOTEL](https://dailyhotel.io/)
+- [ZIGZAG 기술 블로그](https://devblog.croquis.com/ko/)
 
 ## 국외
 - [Google Developers](https://developers.googleblog.com/)
@@ -24,3 +25,4 @@
 - [zeit](https://zeit.co/blog)
 - [kloud](https://blog.kloud.com.au/)
 - [Mexia Blog](https://blog.mexia.com.au/)
+- [MARVEL DEVELOPER PORTAL](https://developer.marvel.com/)
