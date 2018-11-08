@@ -71,6 +71,14 @@ public class FoobarTest {
 - JUnit을 사용할 때, Main함수에는 @Test 어노테이션이 먹히지 않는다
 - java.lang.Exception: Method parsePageNumber() should be public
   - method는 public이어야 한다
+    - JUnit의 테스트 메소드는 왜 public이어야 할까?
+      - JDK1.1에서는 리플렉션에서 public메소드만 접근 허용
+      - 따라서 JUnit의 테스트 메소드는 모두 public이어야 했다
+      - 그런데 JDK1.2부터 리플렉션에서 public외의 모든 접근레벨에서 다 허용 (심지어 private메소드도)
+      - 하지만 JUnit은 전통을 유지해서 여전히 public 메소드만 테스트로 허용 (관례)
+      - [출처] https://groups.google.com/forum/#!msg/ksug/xpJpy8SCrEE/qyW6QHMnEGwJ
+
+
 - java.lang.Exception: Method parsePageNumber should have no parameters
   - method에 파라미터가 없어야 한다
 
