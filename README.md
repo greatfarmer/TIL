@@ -17,6 +17,7 @@
 * https://github.com/thoughtbot/til
 
 ## 즐겨찾기
+- [개발 행사 후기](Review\Review.md)
 - [Git](Git/Git.md)
 - [Useful tools for developers](Tip/Tip-Tools.md)
 - [업체별 기술 블로그 리스트](Tip/Tip-EnterpriseTechBlog.md)
