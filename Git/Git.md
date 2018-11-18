@@ -29,6 +29,7 @@
 - [리모트 저장소에 푸시한 커밋을 리베이스했을 경우](#리모트-저장소에-푸시한-커밋을-리베이스했을-경우)
 - [git remote repository url 확인 및 변경](#git-remote-repository-url-확인-및-변경)
 - [git push시 '매번 github 인증정보 묻지 않기' 설정](#git-push시-매번-github-인증정보-묻지-않기-설정)
+- ['fatal: HttpRequestException encountered.' 오류 해결](#fatal-HttpRequestException-encountered-오류-해결)
 
 
 ## Trouble Shooting
@@ -121,3 +122,11 @@
     - `osxkeychain`
       - Mac에서 제공하는 Keychain시스템 사용
       - 자세한 내용은 레퍼런스 사이트 참고
+
+### 'fatal: HttpRequestException encountered.' 오류 해결
+- 원인
+  - GitHub이 TLS 1.2를 사용하도록 전환함
+  - 현재 프로그램이 TLS 1.0을 사용하여 GitHub에 계속 연결하려고 할 때 이 오류가 발생
+- 해결 참고 사이트
+  - http://recoveryman.tistory.com/418
+  - https://codeshare.co.uk/blog/how-to-solve-the-github-error-fatal-httprequestexception-encountered/
