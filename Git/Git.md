@@ -27,6 +27,8 @@
 ## Trouble Shooting 바로가기
 - [Sourcetree에서 User information 내용을 변경해도 새 Repository에서 적용이 되지 않을 경우](#sourcetree에서-user-information-내용을-변경해도-새-repository에서-적용이-되지-않을-경우)
 - [리모트 저장소에 푸시한 커밋을 리베이스했을 경우](#리모트-저장소에-푸시한-커밋을-리베이스했을-경우)
+- [git remote repository url 확인 및 변경](#git-remote-repository-url-확인-및-변경)
+- git push시 '매번 github 인증정보 묻지 않기' 설정(#git-push시-'매번-github-인증정보-묻지-않기'-설정)
 
 
 ## Trouble Shooting
@@ -76,3 +78,47 @@
         - 공동작업의 경우 더 심각한 상황을 초래한다
       - Best: 이런 상황 자체를 만들지 말자
         - 하지만, 세상은 생각대로만 흘러가지 않는다
+
+### git remote repository url 확인 및 변경
+- 확인
+  - `git config --get remote.origin.url`
+- 변경
+  - `git remote set-url origin "repository 주소"`
+    - 예) `git remote set-url origin "https://github.com/greatfarmer/vue-tutorial-hello.git"`
+
+### git push시 '매번 github 인증정보 묻지 않기' 설정
+> https://git-scm.com/book/ko/v2/Git-도구-Credential-저장소
+
+- `git config --global credential.helper <옵션>`
+  - `<옵션>`
+    - 설정하지 않음
+      - 어떤 암호도 저장하지 않음
+      - 인증이 필요할 때 매번 인증정보(사용자이름과 암호)를 입력해야함
+    - `cache`
+      - 일정 시간 동안 메모리에 인증정보를 기억
+      - 이 정보를 Disk에 저장하지 않음
+      - 메모리에서 15분까지만 유지
+    - `store`
+      - 인증정보를 Disk의 텍스트 파일로 저장하며 계속 유지
+      - 리모트의 인증정보를 변경하지 않는 한 다시 인증정보를 입력하지 않아도 접근 가능
+        - 매번 사용자이름과 암호를 입력하지 않아도 됨
+      - 주의사항
+        - 인증정보가 사용자 홈 디렉토리 아래의 일반 텍스트 파일로 저장됨
+          - (Windows의 경우) `C:\Users\<Windows 사용자이름>\.git-credentials`
+            - `https://<github 사용자이름>:<비밀번호>@github.com`
+            - 암호화 되지 않고 인증정보가 그대로 저장됨
+        - 암호화하려면 Github 로그인 후 아래의 경로에서 토큰을 생성 (**권장**)
+          - `Settings` - `Developer settings` - `Personal access tokens` - `Generate new token`
+            - `Token description` 입력
+            - `Select scopes` - `repo` 전체선택
+              - 이렇게 하면 repository 관리 권한만 따로 주게 됨
+              - 즉, github사이트에서 로그인 시 비밀번호에 이 토큰을 적용해도 로그인되지 않음
+            - `Generate token`
+          - 최초 발급된 token값을 최초 push에서 github로그인 시 비밀번호란에 사용하면 됨
+            - token값을 잃어버렸다면?
+              - 해당 토큰에서 `Regenerate token`을 하거나
+              - 새로운 토큰을 생성
+
+    - `osxkeychain`
+      - Mac에서 제공하는 Keychain시스템 사용
+      - 자세한 내용은 레퍼런스 사이트 참고
