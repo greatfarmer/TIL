@@ -28,7 +28,7 @@
 - [Sourcetree에서 User information 내용을 변경해도 새 Repository에서 적용이 되지 않을 경우](#sourcetree에서-user-information-내용을-변경해도-새-repository에서-적용이-되지-않을-경우)
 - [리모트 저장소에 푸시한 커밋을 리베이스했을 경우](#리모트-저장소에-푸시한-커밋을-리베이스했을-경우)
 - [git remote repository url 확인 및 변경](#git-remote-repository-url-확인-및-변경)
-- [git push시 '매번 github 인증정보 묻지 않기' 설정](#git-push시-'매번-github-인증정보-묻지-않기'-설정)
+- [git push시 '매번 github 인증정보 묻지 않기' 설정](#git-push시-매번-github-인증정보-묻지-않기-설정)
 
 
 ## Trouble Shooting
@@ -118,7 +118,6 @@
             - token값을 잃어버렸다면?
               - 해당 토큰에서 `Regenerate token`을 하거나
               - 새로운 토큰을 생성
-
     - `osxkeychain`
       - Mac에서 제공하는 Keychain시스템 사용
       - 자세한 내용은 레퍼런스 사이트 참고
