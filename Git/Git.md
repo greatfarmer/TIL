@@ -11,6 +11,12 @@
 - https://sujinlee.me/professional-github/
 - https://djkeh.github.io/articles/How-to-write-a-git-commit-message-kor/
 
+## pull request
+- https://wayhome25.github.io/git/2017/07/08/git-first-pull-request-story/
+
+## rebase
+- http://dogfeet.github.io/articles/2012/git-merge-rebase.html
+
 ## gitignore
 - [gitignore](Git-gitignore.md)
 - [gitignore.io](https://www.gitignore.io/) | Create useful .gitignore files for your project
