@@ -11,6 +11,11 @@
 - https://sujinlee.me/professional-github/
 - https://djkeh.github.io/articles/How-to-write-a-git-commit-message-kor/
 
+## 히스토리 단장하기
+- https://git-scm.com/book/ko/v1/Git-도구-히스토리-단장하기
+- https://git-scm.com/docs/git-filter-branch
+- https://blog.outsider.ne.kr/1249
+
 ## pull request
 - https://wayhome25.github.io/git/2017/07/08/git-first-pull-request-story/
 
