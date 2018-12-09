@@ -34,3 +34,6 @@
     - https://support.google.com/mail/troubleshooter/1668960?hl=ko&rd=2#ts=1665018
   - `내 계정` -> `로그인 및 보안` -> `연결된 앱 및 사이트` -> `보안 수준이 낮은 앱 허용`
     - http://micropilot.tistory.com/category/Java%20Mail/Gmail%20Account
+
+## 리눅스 서버 60초안에 상황파악하기
+- https://b.luavis.kr/server/linux-performance-analysis
