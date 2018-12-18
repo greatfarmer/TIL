@@ -22,3 +22,4 @@
 - [Useful tools for developers](Tip/Tip-Tools.md)
 - [Git](Git/Git.md)
 - [Linux](Linux/Linux.md)
+- [Tip](Tip/Tip.md)
