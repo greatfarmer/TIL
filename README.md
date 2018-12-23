@@ -23,3 +23,6 @@
 - [Git](Git/Git.md)
 - [Linux](Linux/Linux.md)
 - [Tip](Tip/Tip.md)
+
+## 회고
+- [2018년 회고](Review/Retrospection/Retrospection-2018.md)
