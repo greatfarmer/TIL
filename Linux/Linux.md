@@ -40,3 +40,6 @@
 
 ## 리눅스 LVM 생성
 - http://sgbit.tistory.com/13
+
+## CentOs에 jdk설치 및 환경변수(JAVA_HOME)설정
+- https://blog.hanumoka.net/2018/04/30/centOs-20180430-centos-install-jdk/
