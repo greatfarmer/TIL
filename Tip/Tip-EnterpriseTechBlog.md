@@ -14,6 +14,9 @@
 - [BSIDESOFT co.](http://www.bsidesoft.com/)
 - [DAILYHOTEL](https://dailyhotel.io/)
 - [ZIGZAG 기술 블로그](https://devblog.croquis.com/ko/)
+- [야놀자 기술 블로그](https://yanolja.github.io/)
+- [NDS Cloud Tech Blog](https://tech.cloud.nongshim.co.kr/techblog/)
+- [GS네오텍(WiseN) 공식 블로그](https://blog.wisen.co.kr/)
 
 ## 국외
 - [Google Developers](https://developers.googleblog.com/)
@@ -26,3 +29,4 @@
 - [kloud](https://blog.kloud.com.au/)
 - [Mexia Blog](https://blog.mexia.com.au/)
 - [MARVEL DEVELOPER PORTAL](https://developer.marvel.com/)
+- [IBM Developer](https://developer.ibm.com/)
