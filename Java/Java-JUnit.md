@@ -50,7 +50,7 @@ public class FoobarTest {
 ```
 
 ### Diagram
-![JUnit-diagram](Images/JUnit-diagram.png)
+![JUnit-diagram](images/JUnit-diagram.png)
 
 ## 유닛 테스트
 > https://ko.wikipedia.org/wiki/유닛_테스트
