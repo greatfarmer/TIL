@@ -29,6 +29,9 @@
 ## GitHub language colors
 - [GiHub-Colors](Git-GitHub-Colors.md)
 
+## Github에서 Two-factor authentication(이중 인증) 사용
+- https://lee-seul.github.io/other/git/2018/04/13/github-Two-factor-authentication.html
+
 ## Trouble Shooting 바로가기
 - [Sourcetree에서 User information 내용을 변경해도 새 Repository에서 적용이 되지 않을 경우](#sourcetree에서-user-information-내용을-변경해도-새-repository에서-적용이-되지-않을-경우)
 - [리모트 저장소에 푸시한 커밋을 리베이스했을 경우](#리모트-저장소에-푸시한-커밋을-리베이스했을-경우)
