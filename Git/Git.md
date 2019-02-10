@@ -1,5 +1,8 @@
 # Git
 
+## git - 간편 안내서
+- https://rogerdudler.github.io/git-guide/index.ko.html
+
 ## 깃을 위한 flight rules
 - https://github.com/k88hudson/git-flight-rules/blob/master/README_kr.md
 
