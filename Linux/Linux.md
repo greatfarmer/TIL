@@ -8,6 +8,8 @@
 - `rm -rf ./*` 현재 위치한 경로상의 폴더 및 파일 모두 삭제
 - `history` 쉘 명령어 수행 목록 조회
 - `last` 최근 접속 기록 및 최근 재부팅 기록 확인
+- `free` 메모리 확인
+- `top` 시스템에서 프로세스 목록을 CPU 사용률이 높은 것부터 확인
 
 ## 제타위키 리눅스
 - https://zetawiki.com/wiki/분류:리눅스
@@ -43,3 +45,6 @@
 
 ## CentOs에 jdk설치 및 환경변수(JAVA_HOME)설정
 - https://blog.hanumoka.net/2018/04/30/centOs-20180430-centos-install-jdk/
+
+## rpm 명령어로 패키지 설치 및 업그레이드
+- http://pchero21.com/?p=1424
