@@ -48,3 +48,6 @@
 
 ## rpm 명령어로 패키지 설치 및 업그레이드
 - http://pchero21.com/?p=1424
+
+## 파이썬 paramiko라이브러리로 ssh접속
+- https://hakurei.tistory.com/222
