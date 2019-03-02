@@ -10,3 +10,4 @@
 
 ## 2019
 - [KCD(Korea Community Day) 2019](ETC/KCD2019.md)
+- [구구콘(99Con)](ETC/Weirdx-99con-2019.md)
