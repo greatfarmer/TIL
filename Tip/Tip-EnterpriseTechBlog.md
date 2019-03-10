@@ -17,6 +17,10 @@
 - [야놀자 기술 블로그](https://yanolja.github.io/)
 - [NDS Cloud Tech Blog](https://tech.cloud.nongshim.co.kr/techblog/)
 - [GS네오텍(WiseN) 공식 블로그](https://blog.wisen.co.kr/)
+- [NAVER LABS](https://www.naverlabs.com/)
+- [TOAST Meetup](https://meetup.toast.com)
+- [당근마켓 팀블로그](https://medium.com/daangn)
+- [VCNC Engineering Blog](http://engineering.vcnc.co.kr/)
 
 ## 국외
 - [Google Developers](https://developers.googleblog.com/)
