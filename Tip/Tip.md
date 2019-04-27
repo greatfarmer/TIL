@@ -1,4 +1,11 @@
 # Tip
+## 작성
+### Java
+- [apple-banana-melon과 같이 문자사이에 특정문자를 입력하고 싶을 때](../Java/Tip/Java-StringJoiner.md)
+- [실행 가능한 jar파일 만들고 실행하기](../Java/Tip/Java-jar.md)
+
+## 링크
+### Java
 - [NullPointerException을 예방하는 방법](http://www.jpstory.net/2014/02/09/avoid-nullpointerexception/)
 - [Guava - Using and avoiding null](https://github.com/google/guava/wiki/UsingAndAvoidingNullExplained)
 - [Compile and Run Java in Command Line with External Jars](https://www.programcreek.com/2014/01/compile-and-run-java-in-command-line-with-external-jars/)
