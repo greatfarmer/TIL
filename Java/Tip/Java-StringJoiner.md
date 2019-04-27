@@ -1,6 +1,4 @@
-# Tip - Java
-
-## apple-banana-melon 와 같이 문자사이에 특정문자를 입력하고 싶을 때
+# apple-banana-melon과 같이 문자사이에 특정문자를 입력하고 싶을 때
 - org.apache.commons.lang3.StringUtils 사용
 ```java
 import static org.hamcrest.CoreMatchers.is;
