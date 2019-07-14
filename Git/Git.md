@@ -41,6 +41,7 @@
 - [git remote repository url 확인 및 변경](#git-remote-repository-url-확인-및-변경)
 - [git push시 '매번 github 인증정보 묻지 않기' 설정](#git-push시-매번-github-인증정보-묻지-않기-설정)
 - ['fatal: HttpRequestException encountered.' 오류 해결](#fatal-HttpRequestException-encountered-오류-해결)
+- [github private repository clone](#github-private-repository-clone)
 
 
 ## Trouble Shooting
@@ -141,3 +142,44 @@
 - 해결 참고 사이트
   - http://recoveryman.tistory.com/418
   - https://codeshare.co.uk/blog/how-to-solve-the-github-error-fatal-httprequestexception-encountered/
+
+### github private repository clone
+- 원인
+  - github private repository clone시 아래와 같은 에러가 발생
+  - `$ git clone https://github.com/[github ID]/sample.git`
+  ```
+  Initialized empty Git repository in /home/[유저명]/sample/.git/
+  error: The requested URL returned error: 403 Forbidden while accessing https://github.com/[github ID]/sample.git/info/refs
+
+  fatal: HTTP request failed
+  ```
+
+- 해결
+  - SSH key 생성 및 추가
+    - `$ ssh-keygen -t rsa -b 4096 -C "your_email@example.com"`
+    ```bash
+    > Generating public/private rsa key pair.
+    > Enter file in which to save the key (/home/[유저명]/.ssh/id_rsa): [enter]
+    > Enter passphrase (empty for no passphrase): [원하는 passphrase 입력]
+    > Enter same passphrase again: [passphrase 재입력]
+    ```
+    - `$ ssh-add ~/.ssh/id_rsa`
+    ```bash
+    > Identity added: /home/[유저명]/.ssh/id_rsa (/home/[유저명]/.ssh/id_rsa)
+    ```
+  - github 계정에 SSH key 등록
+    - `$ vi ~/.ssh/id_rsa.pub`
+    - SSH key 파일 내용 복사
+    - github > Personal settings > [SSH and GPG keys](https://github.com/settings/keys)
+      - SSH keys > New SSH key
+        - Title
+          - 임의의 Title 입력
+        - Key
+          - 복사한 SSH key 파일 내용 붙여넣기
+      - Add SSH key
+  - 해당 private repository에서 git clone with SSH
+    - `$ git clone git@github.com:[github ID]/sample.git`
+
+- 출처 https://help.github.com/en/articles/connecting-to-github-with-ssh
+
+
