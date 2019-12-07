@@ -29,7 +29,7 @@ public class CallByReference {
         ref_a.age = 10;
         ref_b.age = 20;
 
-        System.out.println(ref_a.age); // 10
+        System.out.println(ref_a.age); // 20
         System.out.println(ref_b.age); // 20
     }
 }
