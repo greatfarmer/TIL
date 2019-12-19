@@ -11,3 +11,4 @@
 ## 2019
 - [KCD(Korea Community Day) 2019](ETC/KCD2019.md)
 - [구구콘(99Con)](ETC/Weirdx-99con-2019.md)
+- [44bits 밋업: 서울에서 만나는 AWS re:Invent 2019](ETC/44bits-aws-reinvent-2019.md)
