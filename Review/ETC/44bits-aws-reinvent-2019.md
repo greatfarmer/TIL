@@ -15,7 +15,7 @@
 - 버스를 타자
 
 ### 새로운 서비스
-- bit.ly/44bits-reinvent2019
+- [44bits - AWS re:Invent 2019 회고 요약](https://bit.ly/44bits-reinvent2019)
   - 관심있는 서비스
     - [CloudWatch](https://aws.amazon.com/ko/cloudwatch/)
     - [Image Builder](https://aws.amazon.com/ko/image-builder/)
