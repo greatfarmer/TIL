@@ -19,11 +19,9 @@
 ## 즐겨찾기
 - [책](Book/Book.md)
 - [개발 행사 후기](Review/Review.md)
-- [업체별 기술 블로그 리스트](Tip/Tip-EnterpriseTechBlog.md)
-- [Useful tools for developers](Tip/Tip-Tools.md)
-- [Linux](Linux/Linux.md)
 - [Git](Git/Git.md)
 - [Tip](Tip/Tip.md)
+- [Useful tools for developers](Tip/Tip-Tools.md)
 
 ## 회고
 - [2019년 회고](Review/Retrospection/Retrospection-2019.md)
