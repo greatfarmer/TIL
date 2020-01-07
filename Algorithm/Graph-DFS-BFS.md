@@ -28,7 +28,7 @@ class Queue<T> {
     private Node<T> first;
     private Node<T> last;
 
-    public void add(T item) {
+    public void enqueue(T item) {
         Node<T> t = new Node<T>(item);
 
         if(last != null) {
@@ -40,7 +40,7 @@ class Queue<T> {
         }
     }
 
-    public T remove() {
+    public T dequeue() {
         if(first == null) {
             throw new NoSuchElementException();
         }
@@ -120,14 +120,14 @@ class Graph {
     void bfs(int index) {
         Node root = nodes[index];
         Queue<Node> queue = new Queue<>();
-        queue.add(root);
+        queue.enqueue(root);
         root.marked = true;
         while (!queue.isEmpty()) {
-            Node r = queue.remove();
+            Node r = queue.dequeue();
             for (Node n : r.adjacent) {
                 if (n.marked == false) {
                     n.marked = true;
-                    queue.add(n);
+                    queue.enqueue(n);
                 }
             }
             visit(r);
