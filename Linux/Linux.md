@@ -3,6 +3,7 @@
 ## 빨리 찾기
 - [자주쓰는 명령어](#자주쓰는-명령어)
 - [권한 관리](#권한-관리)
+- [심볼릭 링크](#심볼릭-링크)
 - [링크](#링크)
 
 ## 자주쓰는 명령어
@@ -17,15 +18,14 @@
 - `top` 시스템에서 프로세스 목록을 CPU 사용률이 높은 것부터 확인
 
 ## 권한 관리
-```sh
+```
 $ ll
 drwxrwxr-x 3 greatfarmer greatfarmer 4096 Feb 25 20:07 ./
 drwxr-xr-x 5 greatfarmer greatfarmer 4096 Feb 25 20:05 ../
-drwxrwxr-x 2 greatfarmer greatfarmer 4096 Feb 25 20:07 apple/
+lrwxrwxrwx 1 greatfarmer greatfarmer   21 Feb 25 20:07 app -> /home/greatfarmer/application/
+drwxrwxr-x 2 greatfarmer greatfarmer 4096 Feb 25 20:07 foo/
 -rwxrw-r-- 1 greatfarmer greatfarmer    6 Feb 25 20:06 hello.txt
-lrwxrwxrwx 1 greatfarmer greatfarmer   21 Feb 25 20:07 pineapple -> /home/greatfarmer/ppp/
 ```
-
 ```
 -rwxrw-r-- 1 greatfarmer greatfarmer    6 Feb 25 20:06 hello.txt
 ```
@@ -52,7 +52,7 @@ lrwxrwxrwx 1 greatfarmer greatfarmer   21 Feb 25 20:07 pineapple -> /home/greatf
 
 퍼미션 변경
 - `chmod [변경될 퍼미션값] [변경할 대상]`
-```sh
+```
 -rwxrw-r-- 1 greatfarmer greatfarmer    6 Feb 25 20:06 hello.txt
 ```
 - 위의 권한을 -rwxr-xr-x로 변경하고 싶다
@@ -63,21 +63,30 @@ rwx r-x r-x를 이진수로 나타내면
 ```
 $ chmod 755 hello.txt
 ```
-```sh
+```
 -rwxr-xr-x 1 greatfarmer greatfarmer    6 Feb 25 20:06 hello.txt
 ```
 
 소유자 변경
 - `chown [변경할 소유자]:[변경할 그룹] [변경할 대상]`
-```sh
+```
 -rwxr-xr-x 1 greatfarmer greatfarmer    6 Feb 25 20:06 hello.txt
 ```
 - 위의 소유자와 그룹을 queen으로 변경하고 싶다
 ```
 $ chown queen:queen hello.txt
 ```
-```sh
+```
 -rwxr-xr-x 1 queen       queen          6 Feb 25 20:06 hello.txt
+```
+
+## 심볼릭 링크
+- `ln -s [원본 파일 또는 디렉토리] [심볼릭 링크 이름]`
+```
+$ ln -s /home/greatfarmer/application app
+```
+```
+lrwxrwxrwx 1 greatfarmer greatfarmer   29 Feb 25 20:49 app -> /home/greatfarmer/application/
 ```
 
 ## 링크
