@@ -24,5 +24,6 @@
 - [Useful tools for developers](Tip/Tip-Tools.md)
 
 ## 회고
+- [2020년 회고](Review/Retrospection/Retrospection-2020.md)
 - [2019년 회고](Review/Retrospection/Retrospection-2019.md)
 - [2018년 회고](Review/Retrospection/Retrospection-2018.md)
